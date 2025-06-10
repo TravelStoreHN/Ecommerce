@@ -1,43 +1,67 @@
 const { defineConfig } = require('vite');
 const react = require('@vitejs/plugin-react');
 const path = require('path');
-const { generateCSP } = require('./src/config/csp.cjs');
 
-module.exports = defineConfig(({ mode }) => ({
+module.exports = defineConfig({
   plugins: [
-    react(),
-    {
-      name: 'configure-response-headers',
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          res.setHeader('Content-Security-Policy', generateCSP());
-          next();
-        });
+    react({
+      jsxRuntime: 'classic',
+      babel: {
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', { runtime: 'classic' }]
+        ]
       }
-    }
+    })
   ],
   base: './',
+  css: {
+    postcss: './postcss.config.cjs'
+  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'),
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        format: 'systemjs',
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
       }
     },
     target: 'es2015',
-    minify: mode === 'production',
-    sourcemap: mode !== 'production'
+    minify: 'terser',
+    terserOptions: {
+      format: {
+        comments: false
+      },
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log']
+      }
+    },
+    sourcemap: false
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+    },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
+  },
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript'
     }
   },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(mode)
-  }
-}));
+  preview: {
+    headers: {
+      'Cache-Control': 'no-store',
+      'Content-Type': 'application/javascript'
+    }
+  },
+  publicDir: 'public',
+  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.gif'],
+});
