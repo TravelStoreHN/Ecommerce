@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
@@ -13,10 +14,10 @@ import LegalPage from './pages/LegalPage';
 import NotFoundPage from './pages/NotFoundPage';
 import TrackOrderPage from './pages/TrackOrderPage';
 import TravelKitsPage from './pages/TravelKitsPage';
-import CartPage from './pages/CartPage';
-import ESimPage from './pages/ESimPage';
-import TravelSizeToiletriesPage from './pages/TravelSizeToiletriesPage';
-import Notification from './components/ui/Notification';
+import CartPage from './pages/CartPage'; // Import CartPage
+import ESimPage from './pages/ESimPage'; // Import ESimPage
+import TravelSizeToiletriesPage from './pages/TravelSizeToiletriesPage'; // Import TravelSizeToiletriesPage
+import Notification from './components/ui/Notification'; // Import Notification component
 import { mockProducts, mockBlogPosts } from './services/mockData';
 
 const AppContent: React.FC = () => {
@@ -29,7 +30,7 @@ const AppContent: React.FC = () => {
         <Route path="product/:id" element={<ProductDetailPage products={mockProducts} />} />
         <Route path="kits" element={<TravelKitsPage />} />
         <Route path="esim" element={<ESimPage />} />
-        <Route path="travel-size-toiletries" element={<TravelSizeToiletriesPage />} />
+        <Route path="travel-size-toiletries" element={<TravelSizeToiletriesPage />} /> {/* Added TravelSizeToiletriesPage route */}
         <Route path="cart" element={<CartPage />} /> 
         <Route path="account" element={<MyAccountPage />} />
         <Route path="sales" element={<SalesPage />} />
@@ -54,4 +55,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App; 
+export default App;
