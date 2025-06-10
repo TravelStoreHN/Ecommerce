@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = defineConfig({
   plugins: [react()],
-  base: '/', // For custom domain travelstorehn.com
+  base: './',
   css: {
     postcss: './postcss.config.cjs'
   },
@@ -13,8 +13,9 @@ module.exports = defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        manualChunks: undefined,
-        format: 'iife'
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
       }
     },
     target: 'esnext',
