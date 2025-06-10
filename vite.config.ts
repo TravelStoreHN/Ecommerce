@@ -4,13 +4,19 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Ecommerce/',
+  base: '/',
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '.'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 });
