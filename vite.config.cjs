@@ -22,25 +22,47 @@ module.exports = defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        format: 'systemjs',
+        format: 'iife',
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
+        assetFileNames: 'assets/[name].[ext]',
+        inlineDynamicImports: true,
+        manualChunks: undefined
       }
     },
     target: 'es2015',
     minify: 'terser',
     terserOptions: {
-      format: {
-        comments: false
+      parse: {
+        bare_returns: false
       },
       compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log']
-      }
+        arrows: false,
+        collapse_vars: false,
+        comparisons: false,
+        computed_props: false,
+        hoist_props: false,
+        inline: false,
+        loops: false,
+        negate_iife: false,
+        properties: false,
+        reduce_funcs: false,
+        reduce_vars: false,
+        switches: false,
+        typeofs: false,
+        booleans: true,
+        if_return: true,
+        sequences: true,
+        unused: true,
+        conditionals: true,
+        dead_code: true,
+        evaluate: false
+      },
+      mangle: false,
+      module: false
     },
-    sourcemap: false
+    sourcemap: false,
+    cssCodeSplit: false
   },
   resolve: {
     alias: {
