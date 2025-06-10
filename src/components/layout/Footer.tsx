@@ -25,7 +25,7 @@ const YouTubeIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export default function Footer(): JSX.Element {
+export default function Footer(): React.ReactElement {
   const { language, setLanguage, currency, setCurrency, supportedLanguages, supportedCurrencies } = useSettings();
 
   const copyrightYearRange = "2022-2025";

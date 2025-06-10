@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { SITE_NAME } from '../../constants';
@@ -16,7 +15,7 @@ import { useSettings } from '../../contexts/SettingsContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 
-const Logo = (): JSX.Element => (
+const Logo = (): React.ReactElement => (
     <Link to="/shop" className="text-3xl font-bold tracking-tight text-purple-600 hover:text-purple-700 transition-colors">
       {SITE_NAME}
     </Link>
@@ -86,7 +85,7 @@ const Navbar: React.FC = () => {
 
   const t = (key: string) => translations[language]?.[key] || translations['en'][key];
 
-  const NavItem = ({ path, name, onClick, mobile = false, icon: IconComponent, end = false }: NavItemProps): JSX.Element => {
+  const NavItem = ({ path, name, onClick, mobile = false, icon: IconComponent, end = false }: NavItemProps): React.ReactElement => {
     const getDynamicClasses = ({ isActive }: { isActive: boolean }): string => {
       const baseTransition = 'transition-colors';
       let specificStyles = '';
