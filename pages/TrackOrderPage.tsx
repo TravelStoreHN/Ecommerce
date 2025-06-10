@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { TruckIcon, CheckCircleIcon, ClockIcon, MapPinIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { useSettings } from '../contexts/SettingsContext';
-import { SITE_NAME } from '../../constants';
+import { SITE_NAME } from '../constants';
 
 interface TrackingEvent {
   timestamp: string;
