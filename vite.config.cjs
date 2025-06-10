@@ -15,7 +15,9 @@ module.exports = defineConfig({
       output: {
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
+        assetFileNames: 'assets/[name].[ext]',
+        format: 'es',
+        inlineDynamicImports: true
       }
     },
     target: 'esnext',
@@ -23,7 +25,11 @@ module.exports = defineConfig({
     terserOptions: {
       compress: {
         drop_console: false,
-        drop_debugger: true
+        drop_debugger: true,
+        pure_funcs: ['console.log']
+      },
+      format: {
+        comments: false
       }
     }
   },
@@ -34,7 +40,7 @@ module.exports = defineConfig({
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom']
+    include: ['react', 'react-dom']
   },
   server: {
     headers: {
