@@ -13,7 +13,14 @@ module.exports = defineConfig({
     assetsDir: 'assets',
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        manualChunks: undefined,
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo.name.split('.')[1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            extType = 'img';
+          }
+          return `assets/${extType}/[name]-[hash][extname]`;
+        },
       }
     }
   },
@@ -21,5 +28,16 @@ module.exports = defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom']
+  },
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript',
+    },
+  },
+  publicDir: 'public',
+  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.gif'],
 });
