@@ -1,18 +1,57 @@
-import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import React from 'react';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import ShopLayout from './components/layout/ShopLayout';
+import ShopHomePage from './pages/ShopHomePage';
+import ProductsPage from './pages/ProductsPage';
+import ProductDetailPage from './pages/ProductDetailPage'; 
+import MyAccountPage from './pages/MyAccountPage';
+import SalesPage from './pages/SalesPage';
+import BlogPage from './pages/BlogPage';
+import TravelAgentPage from './pages/TravelAgentPage';
+import LegalPage from './pages/LegalPage';
+import NotFoundPage from './pages/NotFoundPage';
+import TrackOrderPage from './pages/TrackOrderPage';
+import TravelKitsPage from './pages/TravelKitsPage';
+import CartPage from './pages/CartPage';
+import ESimPage from './pages/ESimPage';
+import TravelSizeToiletriesPage from './pages/TravelSizeToiletriesPage';
+import Notification from './components/ui/Notification';
+import { mockProducts, mockBlogPosts } from './services/mockData';
 
-function App() {
+const AppContent: React.FC = () => {
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-100">
-        <main className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-center text-purple-600 mb-8">
-            TravelStoreHN
-          </h1>
-        </main>
-      </div>
-    </Router>
-  )
-}
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/shop" element={<ShopLayout />}>
+        <Route index element={<ShopHomePage />} />
+        <Route path="products" element={<ProductsPage products={mockProducts} />} />
+        <Route path="product/:id" element={<ProductDetailPage products={mockProducts} />} />
+        <Route path="kits" element={<TravelKitsPage />} />
+        <Route path="esim" element={<ESimPage />} />
+        <Route path="travel-size-toiletries" element={<TravelSizeToiletriesPage />} />
+        <Route path="cart" element={<CartPage />} /> 
+        <Route path="account" element={<MyAccountPage />} />
+        <Route path="sales" element={<SalesPage />} />
+        <Route path="blog" element={<BlogPage posts={mockBlogPosts} />} />
+        <Route path="travel-agent" element={<TravelAgentPage />} />
+        <Route path="legal/:policyType" element={<LegalPage />} />
+        <Route path="track-order/:trackingNumber?" element={<TrackOrderPage />} />
+        <Route path="not-found" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to="not-found" replace />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+};
 
-export default App 
+const App: React.FC = () => {
+  return (
+    <HashRouter>
+      <Notification />
+      <AppContent />
+    </HashRouter>
+  );
+};
+
+export default App; 
