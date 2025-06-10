@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
           res.setHeader('Content-Security-Policy', generateCSP());
           
           // Set proper MIME types for JavaScript and TypeScript files
-          if (req.url.match(/\.(js|mjs|jsx|ts|tsx)$/)) {
+          if (req.url && req.url.match(/\.(js|mjs|jsx|ts|tsx)$/)) {
             res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
           }
           
@@ -57,7 +57,12 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     esbuildOptions: {
-      target: 'es2015'
+      target: 'es2015',
+      loader: {
+        '.js': 'jsx',
+        '.ts': 'tsx',
+        '.tsx': 'tsx'
+      }
     }
   },
   server: {
@@ -67,6 +72,14 @@ export default defineConfig(({ mode }) => ({
       'Content-Type': 'application/javascript; charset=utf-8',
       'X-Content-Type-Options': 'nosniff'
     },
-    middlewareMode: false
+    fs: {
+      strict: false,
+      allow: ['..']
+    }
+  },
+  esbuild: {
+    loader: 'tsx',
+    include: /src\/.*\.[tj]sx?$/,
+    exclude: [],
   }
 })); 
