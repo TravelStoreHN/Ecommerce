@@ -3,7 +3,16 @@ const react = require('@vitejs/plugin-react');
 const path = require('path');
 
 module.exports = defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'classic',
+      babel: {
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', { runtime: 'classic' }]
+        ]
+      }
+    })
+  ],
   base: './',
   css: {
     postcss: './postcss.config.cjs'
@@ -13,25 +22,25 @@ module.exports = defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
+        format: 'systemjs',
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]',
-        format: 'es',
-        inlineDynamicImports: true
+        assetFileNames: 'assets/[name].[ext]'
       }
     },
-    target: 'esnext',
+    target: 'es2015',
     minify: 'terser',
     terserOptions: {
-      compress: {
-        drop_console: false,
-        drop_debugger: true,
-        pure_funcs: ['console.log']
-      },
       format: {
         comments: false
+      },
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log']
       }
-    }
+    },
+    sourcemap: false
   },
   resolve: {
     alias: {
