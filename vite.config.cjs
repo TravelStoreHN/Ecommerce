@@ -10,15 +10,19 @@ module.exports = defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
+    emptyOutDir: true,
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html')
-      },
       output: {
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
+        manualChunks: undefined,
+        format: 'iife'
+      }
+    },
+    target: 'esnext',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: false,
+        drop_debugger: true
       }
     }
   },
@@ -33,7 +37,6 @@ module.exports = defineConfig({
   },
   server: {
     headers: {
-      'Cache-Control': 'no-store',
       'Content-Type': 'application/javascript'
     }
   },
