@@ -21,6 +21,8 @@ module.exports = defineConfig({
           }
           return `assets/${extType}/[name]-[hash][extname]`;
         },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js'
       }
     }
   },
@@ -35,8 +37,15 @@ module.exports = defineConfig({
   },
   server: {
     headers: {
-      'Content-Type': 'application/javascript',
-    },
+      'Cache-Control': 'no-store',
+      'Content-Type': 'application/javascript'
+    }
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'no-store',
+      'Content-Type': 'application/javascript'
+    }
   },
   publicDir: 'public',
   assetsInclude: ['**/*.jpg', '**/*.png', '**/*.gif'],
