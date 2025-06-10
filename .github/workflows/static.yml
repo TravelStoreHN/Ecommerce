@@ -36,26 +36,31 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
-      
+
       - name: Install Dependencies
         run: |
-          npm install
-          npm install -D @types/node @vitejs/plugin-react typescript
-      
+          npm ci
+          npm install -D @vitejs/plugin-react typescript @types/react @types/react-dom
+
+      - name: List Files
+        run: ls -la
+        
       - name: Build
-        run: |
-          npm run build
+        run: npm run build
         env:
           CI: false
-      
+          NODE_ENV: production
+
+      - name: List Dist
+        run: ls -la dist
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'dist'
+          path: dist
       
       - name: Deploy to GitHub Pages
         id: deployment
