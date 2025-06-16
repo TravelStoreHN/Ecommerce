@@ -16,9 +16,10 @@ module.exports = defineConfig(({ mode }) => ({
       }
     }
   ],
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
     emptyOutDir: true,
     rollupOptions: {
       input: path.resolve(__dirname, 'index.html'),
