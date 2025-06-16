@@ -16,7 +16,7 @@ module.exports = defineConfig(({ mode }) => ({
       }
     }
   ],
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
