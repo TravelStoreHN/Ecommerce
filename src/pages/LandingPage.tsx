@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
 
 
   const features = [
-    { titleKey: 'featureGear', imageUrl: 'https://picsum.photos/seed/landing1/800/600', linkTo: '/shop/products?category=gear' },
+    { titleKey: 'featureGear', imageUrl: 'https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE' },
     { titleKey: 'featureComfort', imageUrl: 'https://picsum.photos/seed/landing2/800/600', linkTo: '/shop/products?category=comfort' },
     { titleKey: 'featureConnected', imageUrl: 'https://picsum.photos/seed/landing3/800/600', linkTo: '/shop/products?category=electronics' },
     { titleKey: 'featureAdventures', imageUrl: 'https://picsum.photos/seed/landing4/800/600', linkTo: '/shop/travel-agent' },
