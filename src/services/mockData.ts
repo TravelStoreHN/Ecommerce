@@ -159,7 +159,7 @@ export const mockProducts: Product[] = [
     description: '¡Viaja sin preocupaciones con el Adaptador de Viaje Universal BOPU-1033! Este adaptador esencial está diseñado para que puedas cargar tus dispositivos en casi cualquier parte del mundo, eliminando las frustraciones de la incompatibilidad de enchufes.',
     price: calculatePrice('L.15.63'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product7new/600/600',
+    imageUrl: 'https://github.com/TravelStoreHN/Ecommerce/blob/6c2d99d3d3f8455bfea7b1291ed5e483dce7f1f1/Media/Product%20Images/Adaptador%20Giratorio%20EU/1749528881468.png',
     category: 'Electrónicos',
     rating: 4.8,
     reviews: 210,
