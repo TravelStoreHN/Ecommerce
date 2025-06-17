@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
     price: salePriceProd1, 
     originalPrice: regularPriceProd1,
     isSale: true,
-    imageUrl: 'https://picsum.photos/seed/product1new/600/600',
+    imageUrl: 'https://github.com/TravelStoreHN/Ecommerce/blob/7f325c5e32fa300b9466d22a86f7dac2b4815493/Media/Product%20Images/B%C3%A1scula%20Digital%20para%20Equipaje/44-090.jpg',
     category: 'Accesorios de Viaje',
     rating: 4.5,
     reviews: 135,
