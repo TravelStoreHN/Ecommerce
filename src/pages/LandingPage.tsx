@@ -47,11 +47,7 @@ const LandingPage: React.FC = () => {
 
 
   const features = [
-    { 
-      titleKey: 'featureGear', 
-      imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // Airport terminal Unsplash image
-      linkTo: '/shop/products?category=gear' 
-    },
+    { titleKey: 'featureGear', imageUrl: 'https://picsum.photos/seed/landing1/800/600', linkTo: '/shop/products?category=gear' },
     { titleKey: 'featureComfort', imageUrl: 'https://picsum.photos/seed/landing2/800/600', linkTo: '/shop/products?category=comfort' },
     { titleKey: 'featureConnected', imageUrl: 'https://picsum.photos/seed/landing3/800/600', linkTo: '/shop/products?category=electronics' },
     { titleKey: 'featureAdventures', imageUrl: 'https://picsum.photos/seed/landing4/800/600', linkTo: '/shop/travel-agent' },
