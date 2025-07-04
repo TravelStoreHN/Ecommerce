@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import ShopLayout from './components/layout/ShopLayout';
 import ShopHomePage from './pages/ShopHomePage';
@@ -17,8 +16,10 @@ import TravelKitsPage from './pages/TravelKitsPage';
 import CartPage from './pages/CartPage'; // Import CartPage
 import ESimPage from './pages/ESimPage'; // Import ESimPage
 import TravelSizeToiletriesPage from './pages/TravelSizeToiletriesPage'; // Import TravelSizeToiletriesPage
-import Notification from './components/ui/Notification'; // Import Notification component
+import { CartProvider } from './contexts/CartContext';
+import Notification from './components/ui/Notification';
 import { mockProducts, mockBlogPosts } from './services/mockData';
+import ScrollToTop from './utils/ScrollToTop';
 
 const AppContent: React.FC = () => {
   return (
@@ -46,13 +47,19 @@ const AppContent: React.FC = () => {
   );
 };
 
-const App: React.FC = () => {
-  return (
-    <HashRouter>
-      <Notification />
-      <AppContent />
-    </HashRouter>
-  );
-};
+const App: React.FC = () => (
+  <BrowserRouter>
+    <ScrollToTop />
+    <SettingsProvider>
+      <AuthProvider>
+        <CartProvider>
+          <NotificationProvider>
+            <AppContent />
+          </NotificationProvider>
+        </CartProvider>
+      </AuthProvider>
+    </SettingsProvider>
+  </BrowserRouter>
+);
 
 export default App;

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useSettings } from '../contexts/SettingsContext';
 import { formatCurrency } from '../utils/localization';
+import { whatsappService } from '../services/whatsappService';
 import Button from '../components/ui/Button';
-import { ShoppingBagIcon, TrashIcon, ArrowLeftIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline'; // Added PlusIcon, MinusIcon
+import { ShoppingBagIcon, TrashIcon, ArrowLeftIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const CartPage: React.FC = () => {
   const { cartItems, removeItemFromCart, increaseItemQuantity, decreaseItemQuantity, cartItemCount, cartSubtotal } = useCart();
@@ -21,10 +23,11 @@ const CartPage: React.FC = () => {
         unitPrice: "Precio Unitario",
         quantity: "Cantidad",
         itemTotal: "Total Artículo",
-        price: "Precio", // Kept for fallback or other uses
+        price: "Precio",
         remove: "Eliminar",
         subtotal: "Subtotal:",
         proceedToCheckout: "Proceder al Pago",
+        orderViaWhatsApp: "Ordenar por WhatsApp",
         checkoutAlert: "La funcionalidad de pago se implementará pronto.",
         itemRemoved: (itemName: string) => `"${itemName}" eliminado del carrito.`,
         decreaseQuantity: (itemName: string) => `Disminuir cantidad de ${itemName}`,
@@ -40,10 +43,11 @@ const CartPage: React.FC = () => {
         unitPrice: "Unit Price",
         quantity: "Quantity",
         itemTotal: "Item Total",
-        price: "Price", // Kept for fallback or other uses
+        price: "Price",
         remove: "Remove",
         subtotal: "Subtotal:",
         proceedToCheckout: "Proceed to Checkout",
+        orderViaWhatsApp: "Order via WhatsApp",
         checkoutAlert: "Checkout functionality will be implemented soon.",
         itemRemoved: (itemName: string) => `"${itemName}" removed from cart.`,
         decreaseQuantity: (itemName: string) => `Decrease quantity of ${itemName}`,
@@ -64,6 +68,10 @@ const CartPage: React.FC = () => {
   
   const handleCheckout = () => {
     alert(t('checkoutAlert'));
+  };
+
+  const handleWhatsAppOrder = () => {
+    whatsappService.sendOrderViaWhatsApp(cartItems, cartSubtotal, language, currency);
   };
 
   if (cartItemCount === 0) {
@@ -183,6 +191,15 @@ const CartPage: React.FC = () => {
               {t('continueShopping')}
             </Button>
           </Link>
+          <Button 
+            variant="primary" 
+            size="lg" 
+            onClick={handleWhatsAppOrder} 
+            className="w-full sm:w-auto bg-green-600 hover:bg-green-700 focus:ring-green-500"
+            leftIcon={<FaWhatsapp className="h-5 w-5" />}
+          >
+            {t('orderViaWhatsApp')}
+          </Button>
           <Button variant="primary" size="lg" onClick={handleCheckout} className="w-full sm:w-auto">
             {t('proceedToCheckout')}
           </Button>

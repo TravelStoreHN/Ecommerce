@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/sendwelcomeemail.js": {
+      "maxDuration": 10
+    }
+  }
+}
