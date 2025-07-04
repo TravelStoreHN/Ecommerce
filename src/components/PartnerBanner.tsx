@@ -21,14 +21,14 @@ const PartnerBanner: React.FC = () => {
     }
   };
 
-  const currentContent = content[language]; // Changed from settings.language to language
+  const currentContent = content[language as keyof typeof content] || content.en;
 
   const handleContact = () => {
     const message = language === 'es'  // Changed from settings.language to language
       ? "Hola! Me interesa planificar un viaje a Honduras y necesito asesoría."
       : "Hello! I'm interested in planning a trip to Honduras and need advisory.";
     
-    const whatsappUrl = `https://wa.me/50400000000?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/+12407589469?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

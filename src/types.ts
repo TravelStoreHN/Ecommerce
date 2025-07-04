@@ -1,6 +1,3 @@
-
-import { HomeIcon } from '@heroicons/react/24/outline'; // Added HomeIcon
-
 export interface Product {
   id: string;
   name: string;
@@ -26,6 +23,8 @@ export interface BlogPost {
   content: string;
   imageUrl: string;
   tags: string[];
+  category: string;   // <-- Add this
+  readTime: string;   // <-- And this
 }
 
 export interface Experience {

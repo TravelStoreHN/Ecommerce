@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { SITE_NAME } from '../../constants';
@@ -156,7 +155,15 @@ const Navbar: React.FC = () => {
               )}
             </Link>
           </div>
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center space-x-4">
+            <Link to="/shop/cart" className="text-gray-600 hover:text-purple-600 transition-colors relative" aria-label={t('cart')}>
+              <ShoppingBagIcon className="h-7 w-7" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-700 hover:text-purple-600 focus:outline-none p-2"
@@ -221,14 +228,7 @@ const Navbar: React.FC = () => {
               {t('login')}
             </button>
           )}
-          <Link 
-            to="/shop/cart"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="flex items-center px-3 py-3 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-purple-50 hover:text-purple-600 group"
-          >
-            <ShoppingBagIcon className="h-6 w-6 mr-3 text-gray-500 group-hover:text-purple-600" />
-            {t('cart')} ({cartItemCount})
-          </Link>
+          {/* The cart link from the mobile menu is now removed */}
         </div>
       </div>
     </nav>

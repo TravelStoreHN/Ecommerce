@@ -37,15 +37,18 @@ const ShopLayout: React.FC = () => {
       
       {/* Honduras Banner - Bottom */}
       <div 
-        className="fixed bottom-12 left-0 right-0 h-12 bg-purple-600 text-white flex items-center justify-center text-base font-semibold animate-pulse z-40 border-t border-purple-300"
+        className="fixed bottom-0 left-0 right-0 h-12 bg-purple-600 text-white flex items-center justify-center text-base font-semibold animate-pulse z-40 border-t border-purple-300"
         role="banner"
         aria-label="Free shipping nationwide"
       >
         {hondurasBannerText}
       </div>
 
+      <div className="fixed bottom-0 left-0 right-0 mb-12">
+        <ChatBox />
+      </div>
+
       <Footer />
-      <ChatBox />
     </div>
   );
 };

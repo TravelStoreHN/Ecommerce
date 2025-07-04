@@ -7,6 +7,7 @@ import { whatsappService } from '../services/whatsappService';
 import Button from '../components/ui/Button';
 import { ShoppingBagIcon, TrashIcon, ArrowLeftIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
 import { FaWhatsapp } from 'react-icons/fa';
+import FreeShippingProgressBar from '@/components/cart/FreeShippingProgressBar';
 
 const CartPage: React.FC = () => {
   const { cartItems, removeItemFromCart, increaseItemQuantity, decreaseItemQuantity, cartItemCount, cartSubtotal } = useCart();
@@ -95,6 +96,9 @@ const CartPage: React.FC = () => {
           {t('pageTitle')} ({cartItemCount} {cartItemCount === 1 ? t('unit') : language === 'es' ? 'unidades' : 'units'})
         </h1>
       </header>
+
+      {/* 🚚 Free Shipping Progress Bar */}
+      <FreeShippingProgressBar minimumForFreeShipping={25} />
 
       <div className="bg-white rounded-xl shadow overflow-hidden">
         {/* Optional Header for larger screens */}

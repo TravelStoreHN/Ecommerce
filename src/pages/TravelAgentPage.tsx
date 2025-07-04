@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../components/ui/Button';
 import { SparklesIcon, MapIcon, SunIcon, BuildingLibraryIcon } from '@heroicons/react/24/outline';
 import { useSettings } from '../contexts/SettingsContext';
+import PartnerBanner from '@/components/PartnerBanner';
 
 const TravelAgentPage: React.FC = () => {
   const { language } = useSettings();
@@ -118,6 +119,8 @@ const TravelAgentPage: React.FC = () => {
           {t('disclaimer')}
         </p>
       </div>
+
+      <PartnerBanner />
     </div>
   );
 };

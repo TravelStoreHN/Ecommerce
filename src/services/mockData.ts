@@ -1,4 +1,3 @@
-
 import { Product, BlogPost } from '../types';
 
 // HNL_CONVERSION_RATE is used here to derive USD cost from original HNL cost comments.
@@ -39,7 +38,7 @@ export const mockProducts: Product[] = [
     price: salePriceProd1, 
     originalPrice: regularPriceProd1,
     isSale: true,
-    imageUrl: 'https://github.com/TravelStoreHN/Ecommerce/blob/7f325c5e32fa300b9466d22a86f7dac2b4815493/Media/Product%20Images/B%C3%A1scula%20Digital%20para%20Equipaje/44-090.jpg',
+    imageUrl: '/Media/Product Images/Báscula Digital para Equipaje/44-090.jpg',
     category: 'Accesorios de Viaje',
     rating: 4.5,
     reviews: 135,
@@ -66,7 +65,7 @@ export const mockProducts: Product[] = [
     description: 'Transporte su fragancia predilecta a cada destino con nuestro Atomizador de Perfume de Bolsillo de Aluminio de 5ml. Concebido como un artículo premium y reutilizable, este atomizador de dimensiones reducidas representa el acompañante perfecto para sus travesías. La manufactura de su cuerpo, base y cuello en aluminio asegura una perdurabilidad notable y una estética refinada, mientras que su tipo de sellado mediante bomba pulverizadora facilita la aplicación de perfumes, líquidos cosméticos o aceites esenciales. Ideal para conservar una presencia fresca y elegante, este elemento esencial de viaje constituye un aditamento indispensable en su equipaje. Su forma circular y capacidad de 5ml lo hacen óptimo para ser llevado en cualquier bolsillo o bolso.',
     price: calculatePrice('L.1.05'), 
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product2new/600/600',
+    imageUrl: '/Media/Product Images/Atomizador/ATOMIZADOR.jpg',
     category: 'Artículos de Tocador',
     subCategory: 'Fragrance',
     rating: 4.2,
@@ -87,7 +86,7 @@ export const mockProducts: Product[] = [
     price: salePriceProd3,
     originalPrice: regularPriceProd3,
     isSale: true,
-    imageUrl: 'https://picsum.photos/seed/product3new/600/600',
+    imageUrl: '/Media/Product Images/Etiqueta para Equipaje/1749526478684.png',
     category: 'Accesorios de Viaje',
     rating: 4.6,
     reviews: 110,
@@ -104,7 +103,7 @@ export const mockProducts: Product[] = [
     description: 'La Correa Ajustable para Equipaje es el accesorio esencial que combina seguridad, durabilidad y estilo para todas tus aventuras. Diseñada para ofrecer tranquilidad y protección a tu equipaje, esta correa es perfecta para maletas, bolsos y cualquier pieza de equipaje que necesite un extra de seguridad en tus trayectos.',
     price: calculatePrice('L.10.16'), 
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product4new/600/600',
+    imageUrl: '/Media/Product Images/Correa para Equipaje/71JmrnokmzL._AC_UF894,1000_QL80_.jpg',
     category: 'Accesorios de Viaje',
     rating: 4.3,
     reviews: 88,
@@ -125,7 +124,7 @@ export const mockProducts: Product[] = [
     price: salePriceProd5, 
     originalPrice: regularPriceProd5,
     isSale: true,
-    imageUrl: 'https://picsum.photos/seed/product5new/600/600',
+    imageUrl: '/Media/Product Images/Toalla Magnética/1749525010234.png',
     category: 'Artículos de Tocador',
     subCategory: 'Body Care',
     rating: 4.7,
@@ -146,7 +145,7 @@ export const mockProducts: Product[] = [
     description: 'Toalla de microfibra de secado rápido y alta absorción. Perfecta para viajes, gimnasio o playa. Ligera y compacta.',
     price: calculatePrice('L.23.44'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product6new/600/600',
+    imageUrl: '/Media/Product Images/Toalla Magnética/1749525024085.png',
     category: 'Artículos de Tocador',
     subCategory: 'Body Care',
     rating: 4.4,
@@ -159,7 +158,7 @@ export const mockProducts: Product[] = [
     description: '¡Viaja sin preocupaciones con el Adaptador de Viaje Universal BOPU-1033! Este adaptador esencial está diseñado para que puedas cargar tus dispositivos en casi cualquier parte del mundo, eliminando las frustraciones de la incompatibilidad de enchufes.',
     price: calculatePrice('L.15.63'),
     isSale: false,
-    imageUrl: 'https://github.com/TravelStoreHN/Ecommerce/blob/6c2d99d3d3f8455bfea7b1291ed5e483dce7f1f1/Media/Product%20Images/Adaptador%20Giratorio%20EU/1749528881468.png',
+    imageUrl: '/Media/Product Images/Adaptador Universal/1749530876933.png',
     category: 'Electrónicos',
     rating: 4.8,
     reviews: 210,
@@ -177,7 +176,7 @@ export const mockProducts: Product[] = [
     description: 'Presentamos el Adaptador de Enchufe Giratorio EU 3 en 1, un accesorio indispensable para cualquier viajero que busca comodidad y eficiencia. Este práctico dispositivo está diseñado para simplificar la carga de tus aparatos electrónicos mientras estás fuera de casa.',
     price: calculatePrice('L.2.09'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product8new/600/600',
+    imageUrl: '/Media/Product Images/Adaptador Giratorio EU/1749528881468.png',
     category: 'Electrónicos',
     rating: 4.1,
     reviews: 70,
@@ -198,7 +197,7 @@ export const mockProducts: Product[] = [
     description: 'En Travel Store Hn, te presentamos el Cepillo de Dientes de Bambú con Carbón Natural Eco Biodegradable Redondo, el compañero de viaje perfecto para quienes buscan sostenibilidad y cuidado personal. Este cepillo de dientes ha sido diseñado pensando en tu bienestar y el del planeta. Sus cerdas son suaves y están fabricadas con nylon 610, mientras que su mango es de bambú Moso, un material naturalmente eco-biodegradable. Además, es libre de BPA, asegurando una experiencia de cepillado saludable. Con un tamaño regular de 17.5 cm de largo y un peso ligero de solo 11 gramos, es ideal para llevar en tus viajes, usar en casa o incluso como un regalo. Está disponible en colores variados para que elijas el que más te guste. Opta por una opción consciente para tu higiene oral, sin comprometer la efectividad ni tu huella ecológica.',
     price: calculatePrice('L.3.91'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product9new/600/600',
+    imageUrl: '/Media/Product Images/Cepillo de Bambú/IMG_0772_480x480@2x.jpg',
     category: 'Artículos de Tocador',
     subCategory: 'Oral Care',
     rating: 4.6,
@@ -219,7 +218,7 @@ export const mockProducts: Product[] = [
     description: 'En Travel Store Hn, estamos comprometidos con ofrecer productos de alta calidad y sostenibles. Por ello, te presentamos nuestro Hilo Dental de Bambú Ecológico con Carbón y Púas. Este producto ha sido diseñado pensando en la limpieza diaria y el cuidado bucal de toda la familia, desde niños hasta adultos.',
     price: calculatePrice('L.3.13'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product10new/600/600',
+    imageUrl: '/Media/Product Images/Hilo dental de Bambú/1749524900915.png',
     category: 'Artículos de Tocador',
     subCategory: 'Oral Care',
     rating: 4.3,
@@ -236,7 +235,7 @@ export const mockProducts: Product[] = [
     description: 'Spray bucal de bolsillo para un aliento fresco instantáneo sobre la marcha. Ingredientes naturales y efecto duradero.',
     price: calculatePrice('L.8.86'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product11new/600/600',
+    imageUrl: '/Media/Product Images/Antifaz/1749527626383.png',
     category: 'Artículos de Tocador',
     subCategory: 'Oral Care',
     rating: 4.5,
@@ -249,7 +248,7 @@ export const mockProducts: Product[] = [
     description: 'En Travel Store Hn, entendemos que la comodidad y la tranquilidad son clave en cada aventura. Por eso, te presentamos la Bolsa Sanitaria Portátil de Emergencia, la solución ideal para esos momentos inesperados en el camino.',
     price: calculatePrice('L.13.03'), 
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product12new/600/600',
+    imageUrl: '/Media/Product Images/Bolsa para vómito/1749525691048.png',
     category: 'Salud y Bienestar',
     rating: 4.2,
     reviews: 65,
@@ -269,7 +268,7 @@ export const mockProducts: Product[] = [
     description: 'En Travel Store Hn, sabemos que la comodidad es clave en cada viaje. Por eso, te presentamos nuestros Tapones para Oídos de Espuma de 38dB con Estuche, Desechables, tu aliado perfecto para un descanso y tranquilidad inigualables. Diseñados con material de espuma de poliuretano (PU) no tóxico, estos tapones son ligeros y densos, garantizando una comodidad superior incluso durante el uso prolongado. Su forma de bala facilita la inserción de tipo "push-in", adaptándose perfectamente a tu oído para un sellado óptimo. Lo más impresionante es su capacidad de reducción de ruido de 38dB SNR (Single Number Rating), lo que los hace ideales para bloquear el bullicio de los aviones, el ruido de los hoteles o cualquier sonido que pueda interrumpir tu paz mientras viajas o simplemente necesitas concentrarte. Además, cuentan con la certificación CE EN352-2, asegurando su calidad y eficacia. Al ser desechables, te ofrecen una solución higiénica y práctica para cada aventura. Vienen con un estuche que facilita su transporte y almacenamiento, manteniéndolos protegidos y listos para usar en cualquier momento.',
     price: calculatePrice('L.2.09'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product13new/600/600',
+    imageUrl: '/Media/Product Images/Tapón para oídos/1749529306083.png',
     category: 'Comodidad en Viaje',
     rating: 4.7,
     reviews: 180,
@@ -288,9 +287,9 @@ export const mockProducts: Product[] = [
     description: 'Relájate y revitaliza tus ojos con la Mascarilla de Vapor de Lavanda para Ojos de Autocalentamiento, el complemento perfecto para tu rutina de cuidado personal o para esos momentos de descanso durante tus viajes. Diseñada para aliviar la fatiga ocular y con propiedades antienvejecimiento/antiarrugas, esta mascarilla de tipo lámina te ofrece una experiencia de spa en cualquier lugar. Su característica autocalentable proporciona un calor suave y reconfortante que ayuda a relajar los músculos alrededor de los ojos.',
     price: calculatePrice('L.8.34'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product14new/600/600',
+    imageUrl: '/Media/Product Images/Antifaz/1749527670995.png',
     category: 'Comodidad en Viaje', 
-    subCategory: 'Skincare', // Can also be general comfort
+    subCategory: 'Skincare',
     rating: 4.8,
     reviews: 195,
     details: [
@@ -311,7 +310,7 @@ export const mockProducts: Product[] = [
     description: 'Prácticas y compactas hojas de jabón para lavarse las manos sobre la marcha. Solo añade agua. Vienen en un estuche apto para viajes.',
     price: calculatePrice('L.1.31'),
     isSale: false,
-    imageUrl: 'https://picsum.photos/seed/product15new/600/600',
+    imageUrl: '/Media/Product Images/Láminas de jabón para manos/hojas-jabon.jpg',
     category: 'Artículos de Tocador',
     subCategory: 'Hand Care',
     rating: 4.4,
@@ -320,78 +319,96 @@ export const mockProducts: Product[] = [
   }
 ];
 
-export const mockTravelKits: Product[] = [
+export const mockTravelKits = [
   {
     id: 'kit-001',
-    name: 'Kit Esencial de Aseo Personal de Viaje',
-    description: 'Todo lo que necesitas para mantenerte fresco y limpio en tus viajes. Incluye versiones mini de champú, acondicionador, gel de baño, cepillo de dientes plegable y pasta dental.',
-    price: calculatePrice('L.148.08'), // Approx 6 HNL * 24.68 (example sum)
-    imageUrl: 'https://picsum.photos/seed/kit1/600/600',
+    name: 'Kit de Aseo Personal',
+    description: 'Kit completo con todos los esenciales para mantener tu higiene personal durante el viaje.',
+    price: calculatePrice('L.25.13'),
+    imageUrl: 'https://picsum.photos/seed/kit1new/600/600',
     category: 'Kits de Viaje',
-    rating: 4.6,
-    reviews: 75,
-    details: ['Champú (50ml)', 'Acondicionador (50ml)', 'Gel de Baño (50ml)', 'Cepillo de dientes plegable', 'Pasta dental (25g)', 'Bolsa de aseo reutilizable'],
-    isSale: false,
+    rating: 4.7,
+    reviews: 89,
+    items: ['Cepillo de Bambú', 'Hilo Dental de Bambú', 'Hojas de Jabón', 'Spray Bucal', 'Bolsa Sanitaria']
   },
   {
     id: 'kit-002',
-    name: 'Kit de Confort en Vuelo',
-    description: 'Maximiza tu comodidad durante vuelos largos o viajes en autobús. Incluye una almohada de cuello inflable, antifaz para dormir y tapones para los oídos.',
-    price: calculatePrice('L.123.40'), // Approx 5 HNL * 24.68
-    imageUrl: 'https://picsum.photos/seed/kit2/600/600',
+    name: 'Kit de Vuelo Confort',
+    description: 'Todo lo necesario para un vuelo cómodo y relajante.',
+    price: calculatePrice('L.20.93'),
+    imageUrl: 'https://picsum.photos/seed/kit2new/600/600',
     category: 'Kits de Viaje',
     rating: 4.8,
-    reviews: 90,
-    details: ['Almohada de cuello inflable de terciopelo', 'Antifaz para dormir contorneado', 'Tapones para oídos de silicona con estuche', 'Bolsa de transporte compacta'],
-    isSale: false,
+    reviews: 156,
+    items: ['Tapones para Oídos', 'Mascarilla de Ojos', 'Toalla de Microfibra', 'Atomizador de Perfume']
   },
   {
     id: 'kit-003',
-    name: 'Kit de Aventurero Digital',
-    description: 'Mantén tus dispositivos cargados y organizados. Incluye un cargador portátil (power bank), adaptador universal y una pequeña bolsa organizadora de cables.',
-    price: calculatePrice('L.296.16'), // Approx 12 HNL * 24.68
-    imageUrl: 'https://picsum.photos/seed/kit3/600/600',
+    name: 'Kit Digital del Viajero',
+    description: 'Mantén tus dispositivos conectados y seguros en cualquier destino.',
+    price: calculatePrice('L.31.40'),
+    imageUrl: 'https://picsum.photos/seed/kit3new/600/600',
     category: 'Kits de Viaje',
-    rating: 4.5,
-    reviews: 60,
-    details: ['Power Bank 10000mAh', 'Adaptador de viaje universal (US/EU/UK/AU)', 'Bolsa organizadora de electrónicos resistente al agua', 'Correas de velcro para cables (x3)'],
-    isSale: false,
+    rating: 4.6,
+    reviews: 73,
+    items: ['Adaptador Universal BOPU-1033', 'Adaptador Giratorio EU', 'Báscula Digital', 'Etiqueta para Equipaje']
   }
 ];
 
+export const categories = [
+  'Todos',
+  'Accesorios de Viaje',
+  'Artículos de Tocador',
+  'Electrónicos',
+  'Kits de Viaje'
+];
 
+export const featuredProducts = [
+  'prod-001',
+  'prod-007',
+  'prod-005',
+  'kit-002'
+];
+
+// Blog posts data
 export const mockBlogPosts: BlogPost[] = [
   {
     id: '1',
-    slug: 'top-5-destinations-honduras',
-    title: 'Top 5 Destinos Imperdibles en Honduras',
-    date: '2024-07-15',
-    author: 'Juana Pérez, Entusiasta de Viajes',
-    excerpt: 'Descubre las joyas ocultas y los paisajes impresionantes de Honduras. Desde ruinas antiguas hasta playas vírgenes, ¡planifica tu próxima aventura!',
-    content: 'Honduras es una joya centroamericana que ofrece una diversa gama de atracciones. Aquí están nuestras 5 mejores selecciones...\n\n1. Ruinas de Copán: Explora la magnífica ciudad maya, Patrimonio de la Humanidad por la UNESCO.\n2. Roatán: Sumérgete en la Barrera de Coral Mesoamericana, la segunda más grande del mundo.\n3. Parque Nacional Pico Bonito: Camina por exuberantes selvas tropicales y descubre impresionantes cascadas.\n4. Lago de Yojoa: Un paraíso para los observadores de aves y amantes de la naturaleza.\n5. Cayos Cochinos: Islas vírgenes que ofrecen una auténtica experiencia caribeña.',
-    imageUrl: 'https://picsum.photos/seed/blog1/800/400',
-    tags: ['Honduras', 'Viajes', 'Aventura', 'Destinos']
+    title: 'Guía Completa de Equipaje de Mano 2024',
+    excerpt: 'Todo lo que necesitas saber sobre las regulaciones de equipaje de mano para viajar sin problemas.',
+    content: 'Las regulaciones de equipaje de mano han evolucionado...',
+    author: 'María González',
+    date: '2024-01-15',
+    imageUrl: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    category: 'Consejos de Viaje',
+    readTime: '8 min',
+    slug: '',
+    tags: []
   },
   {
     id: '2',
-    slug: 'packing-essentials-smart-travel',
-    title: 'Esenciales de Empaque para un Viaje Inteligente y Sin Estrés',
-    date: '2024-06-28',
-    author: 'Juan García, Viajero Experimentado',
-    excerpt: 'Aprende a empacar ligero e inteligentemente para cualquier viaje. Nuestra lista de verificación asegura que tengas todos los esenciales sin empacar de más.',
-    content: 'Empacar puede ser una tarea desalentadora, pero con la estrategia correcta, se convierte en una brisa. Concéntrate en capas de ropa versátiles, artículos de tocador esenciales en tamaños de viaje y gadgets cruciales...\n\n- Capas de ropa versátiles\n- Artículos de tocador en tamaño de viaje\n- Adaptador universal (¡como nuestro Adaptador de Viaje Universal!)\n- Botella de agua reutilizable (¡echa un vistazo a nuestra Toalla Magnética!)\n- Botiquín de primeros auxilios\n- Documentos importantes y copias',
-    imageUrl: 'https://picsum.photos/seed/blog2/800/400',
-    tags: ['Empaque', 'Consejos', 'Equipo de Viaje', 'Esenciales']
+    title: '10 Gadgets Esenciales para Viajeros Digitales',
+    excerpt: 'Descubre los dispositivos imprescindibles que todo viajero moderno debe llevar en su equipaje.',
+    content: 'En la era digital, los viajeros necesitan...',
+    author: 'Carlos Mendoza',
+    date: '2024-01-10',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    category: 'Tecnología',
+    readTime: '6 min',
+    slug: '',
+    tags: []
   },
   {
     id: '3',
-    slug: 'digital-nomad-honduras',
-    title: 'Honduras para Nómadas Digitales: ¿Un Centro en Auge?',
-    date: '2024-08-01',
-    author: 'Alejandra Chen, Trabajadora Remota',
-    excerpt: 'Explorando los pros y contras de elegir Honduras como tu próximo destino de nómada digital. Costo de vida, internet y comunidad.',
-    content: 'Con su costo de vida asequible y su impresionante belleza natural, Honduras está atrayendo la atención de los nómadas digitales. Ciudades como Tegucigalpa y San Pedro Sula ofrecen comodidades urbanas, mientras que pueblos costeros como Utila y La Ceiba brindan un ambiente más relajado. La conectividad a Internet está mejorando, pero investiga ubicaciones específicas. La cultura local es acogedora y hay una creciente comunidad de trabajadores remotos...',
-    imageUrl: 'https://picsum.photos/seed/blog3/800/400',
-    tags: ['Nómada Digital', 'Honduras', 'Trabajo Remoto', 'Estilo de Vida']
+    title: 'Cómo Organizar tu Kit de Aseo Personal',
+    excerpt: 'Consejos prácticos para mantener tus artículos de tocador organizados y accesibles durante el viaje.',
+    content: 'Un kit de aseo bien organizado es fundamental...',
+    author: 'Ana Rodríguez',
+    date: '2024-01-05',
+    imageUrl: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    category: 'Organización',
+    readTime: '5 min',
+    slug: '',
+    tags: []
   }
 ];

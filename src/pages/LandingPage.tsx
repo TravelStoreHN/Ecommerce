@@ -21,7 +21,7 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({ title, imageUrl, linkTo }) 
 const LandingPage: React.FC = () => {
   const { language } = useSettings();
 
-  const t = (key: string, data?: any) => {
+  const t = (key: string) => {
     const translations: Record<string, any> = {
       es: {
         pageSubtitle: "Tu viaje comienza aquí. Descubre los mejores esenciales de viaje y planificación de viajes a Honduras con IA.",
@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
 
 
   const features = [
-    { titleKey: 'featureGear', imageUrl: 'https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE' },
+    { titleKey: 'featureGear', imageUrl: 'https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE', linkTo: '/shop/products' },
     { titleKey: 'featureComfort', imageUrl: 'https://picsum.photos/seed/landing2/800/600', linkTo: '/shop/products?category=comfort' },
     { titleKey: 'featureConnected', imageUrl: 'https://picsum.photos/seed/landing3/800/600', linkTo: '/shop/products?category=electronics' },
     { titleKey: 'featureAdventures', imageUrl: 'https://picsum.photos/seed/landing4/800/600', linkTo: '/shop/travel-agent' },
