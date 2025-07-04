@@ -20,6 +20,9 @@ import { CartProvider } from './contexts/CartContext';
 import Notification from './components/ui/Notification';
 import { mockProducts, mockBlogPosts } from './services/mockData';
 import ScrollToTop from './utils/ScrollToTop';
+import { SettingsProvider } from './contexts/SettingsContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 const AppContent: React.FC = () => {
   return (
@@ -54,6 +57,7 @@ const App: React.FC = () => (
       <AuthProvider>
         <CartProvider>
           <NotificationProvider>
+            <Notification /> {/* Add this line if you want to show notifications */}
             <AppContent />
           </NotificationProvider>
         </CartProvider>

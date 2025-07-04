@@ -60,10 +60,8 @@ const CartPage: React.FC = () => {
     return text;
   };
 
-  const handleRemoveItem = (itemId: string, itemName: string) => {
+  const handleRemoveItem = (itemId: string) => {
     removeItemFromCart(itemId);
-    // Optional: Add notification for item removal
-    // showNotification(t('itemRemoved', { itemName: itemName }), 'info'); 
   };
   
   const handleCheckout = () => {
@@ -169,7 +167,7 @@ const CartPage: React.FC = () => {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  onClick={() => handleRemoveItem(item.id, item.name)} 
+                  onClick={() => handleRemoveItem(item.id)} 
                   className="text-red-500 hover:bg-red-50 p-2"
                   aria-label={`${t('remove')} ${item.name}`}
                 >
