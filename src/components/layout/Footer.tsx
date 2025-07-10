@@ -43,6 +43,12 @@ export default function Footer(): JSX.Element {
     privacy: language === 'es' ? 'Política de Privacidad' : 'Privacy Policy',
     returns: language === 'es' ? 'Política de Devoluciones' : 'Return Policy',
     shipping: language === 'es' ? 'Política de Envíos' : 'Shipping Policy',
+    importantLinks: language === 'es' ? 'Enlaces Importantes' : 'Important Links',
+    passportsVisa: language === 'es' ? 'Pasaportes y VISA' : 'Passports & VISA',
+    cdcUpdates: language === 'es' ? 'Actualizaciones CDC' : 'CDC Updates',
+    travelAdvisories: language === 'es' ? 'Avisos de Viaje' : 'Travel Advisories',
+    usEmbassy: language === 'es' ? 'Embajada de EE.UU.' : 'US Embassy',
+    who: language === 'es' ? 'OMS' : 'WHO',
     allRightsReserved: language === 'es' ? `© ${copyrightYearRange} ${SITE_NAME}. Todos los derechos reservados.` : `© ${copyrightYearRange} ${SITE_NAME}. All rights reserved.`,
     poweredBy: language === 'es' ? 'Impulsado por GrupoSaubar ❤️' : 'Powered by GrupoSaubar ❤️',
     languageLabel: language === 'es' ? 'Idioma' : 'Language',
@@ -50,11 +56,16 @@ export default function Footer(): JSX.Element {
   };
 
   return (
-    <footer className="bg-purple-700 text-purple-100">
+    <footer className="bg-purple-700 text-purple-100 mt-auto">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-semibold text-white mb-4">{SITE_NAME}</h3>
+            <img 
+              src="https://raw.githubusercontent.com/TravelStoreHN/Ecommerce/refs/heads/main/public/images/AppLogo.png" 
+              alt="TravelStoreHN Logo" 
+              className="w-12 h-12 mb-4 rounded-lg shadow-sm"
+            />
             <p className="text-sm">{content.desc}</p>
           </div>
           <div>
@@ -74,6 +85,16 @@ export default function Footer(): JSX.Element {
               <li><Link to={`/shop/legal/${LEGAL_POLICY_TYPES.PRIVACY}`} className="hover:text-white">{content.privacy}</Link></li>
               <li><Link to={`/shop/legal/${LEGAL_POLICY_TYPES.RETURNS}`} className="hover:text-white">{content.returns}</Link></li>
               <li><Link to={`/shop/legal/${LEGAL_POLICY_TYPES.SHIPPING}`} className="hover:text-white">{content.shipping}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">{content.importantLinks}</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="https://travel.state.gov/content/travel.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">{content.passportsVisa}</a></li>
+              <li><a href="https://www.cdc.gov/covid/vaccines/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">{content.cdcUpdates}</a></li>
+              <li><a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html/" target="_blank" rel="noopener noreferrer" className="hover:text-white">{content.travelAdvisories}</a></li>
+              <li><a href="https://hn.usembassy.gov/" target="_blank" rel="noopener noreferrer" className="hover:text-white">{content.usEmbassy}</a></li>
+              <li><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/travel-advice" target="_blank" rel="noopener noreferrer" className="hover:text-white">{content.who}</a></li>
             </ul>
           </div>
            <div>

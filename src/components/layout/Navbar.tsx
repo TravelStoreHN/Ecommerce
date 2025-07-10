@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { SITE_NAME } from '../../constants';
 import { 
-    Bars3Icon, XMarkIcon, ShoppingBagIcon, UserCircleIcon, TruckIcon, GiftIcon, WifiIcon, 
-    ArrowRightOnRectangleIcon, ArrowLeftOnRectangleIcon,
+    Bars3Icon, XMarkIcon, GiftIcon, WifiIcon, ShoppingBagIcon, UserCircleIcon, TruckIcon,
+    ArrowLeftOnRectangleIcon,
     HomeIcon, // Added
     Squares2X2Icon, // Added
     TagIcon, // Added
@@ -16,7 +16,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 
 const Logo = (): JSX.Element => (
-    <Link to="/shop" className="text-3xl font-bold tracking-tight text-purple-600 hover:text-purple-700 transition-colors">
+    <Link to="/shop" className="text-2xl lg:text-3xl font-bold tracking-tight text-purple-600 hover:text-purple-700 transition-colors whitespace-nowrap">
       {SITE_NAME}
     </Link>
 );
@@ -33,7 +33,7 @@ interface NavItemProps {
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language } = useSettings();
-  const { isAuthenticated, user, login, logout } = useAuth();
+  const { isAuthenticated, user, login } = useAuth();
   const { cartItemCount } = useCart();
 
   const commonNavLinks = [
@@ -45,7 +45,6 @@ const Navbar: React.FC = () => {
     { nameKey: 'sales', defaultText: 'Sales', path: '/shop/sales', icon: TagIcon },
     { nameKey: 'blog', defaultText: 'Blog', path: '/shop/blog', icon: NewspaperIcon },
     { nameKey: 'travelAgent', defaultText: 'Travel Agent', path: '/shop/travel-agent', icon: ChatBubbleOvalLeftEllipsisIcon },
-    { nameKey: 'trackOrder', defaultText: 'Track Order', path: '/shop/track-order', icon: TruckIcon },
   ];
 
   const translations: Record<string, Record<string, string>> = {
@@ -91,13 +90,13 @@ const Navbar: React.FC = () => {
       let specificStyles = '';
 
       if (mobile) {
-        specificStyles = `flex items-center px-3 py-3 rounded-lg text-base font-medium ${
+        specificStyles = `flex items-center px-4 py-3 rounded-lg text-base font-medium ${
           isActive 
             ? 'bg-purple-100 text-purple-700' 
             : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
         }`;
       } else {
-        specificStyles = `px-3 py-2 rounded-md text-sm font-medium flex items-center ${ // Added flex items-center
+        specificStyles = `px-3 py-2 rounded-md text-sm font-medium flex items-center whitespace-nowrap ${ 
           isActive 
             ? 'bg-purple-600 text-white' 
             : 'text-gray-700 hover:bg-purple-100 hover:text-purple-700'
@@ -113,57 +112,61 @@ const Navbar: React.FC = () => {
         className={getDynamicClasses}
         end={end}
       >
-        {IconComponent && <IconComponent className={`h-5 w-5 ${mobile ? 'mr-3 text-gray-500 group-hover:text-purple-600' : 'mr-1'}`} />}
-        {name}
+        {IconComponent && <IconComponent className={`h-5 w-5 ${mobile ? 'mr-3 text-gray-500' : 'mr-2'}`} />}
+        <span className={mobile ? '' : 'truncate'}>{name}</span>
       </NavLink>
     );
   };
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center h-16">
+          {/* Logo - Left side */}
+          <div className="flex items-center flex-shrink-0 mr-6">
             <Logo />
           </div>
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {commonNavLinks.map((link) => (
-              <NavItem key={link.nameKey} path={link.path} name={t(link.nameKey)} end={link.end} icon={link.icon}/>
-            ))}
+          
+          {/* Navigation Links - Starts immediately after logo */}
+          <div className="hidden lg:flex items-center flex-1">
+            <div className="flex items-center space-x-1 xl:space-x-2">
+              {commonNavLinks.map((link) => (
+                <NavItem key={link.nameKey} path={link.path} name={t(link.nameKey)} end={link.end} icon={link.icon}/>
+              ))}
+            </div>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          
+          {/* Mobile User Actions - Between logo and menu button */}
+          <div className="flex items-center space-x-2 ml-auto mr-3 lg:hidden">
+            {/* Cart */}
+            <Link to="/shop/cart" className="text-gray-600 hover:text-purple-600 transition-colors relative" aria-label={t('cart')}>
+              <ShoppingBagIcon className="h-6 w-6" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
+            
+            {/* Login/Account */}
             {isAuthenticated && user ? (
-              <>
-                <Link to="/shop/account" className="text-gray-600 hover:text-purple-600 transition-colors" aria-label={t('myAccount')}>
-                  {user.avatar ? <img src={user.avatar} alt={user.name} className="h-7 w-7 rounded-full" /> : <UserCircleIcon className="h-7 w-7" />}
-                </Link>
-                <button onClick={logout} className="text-gray-600 hover:text-purple-600 transition-colors flex items-center text-sm font-medium" aria-label={t('logout')}>
-                  <ArrowRightOnRectangleIcon className="h-6 w-6 mr-1" /> {t('logout')}
-                </button>
-              </>
+              <Link to="/shop/account" className="text-gray-600 hover:text-purple-600 transition-colors" aria-label={t('myAccount')}>
+                {user.avatar ? <img src={user.avatar} alt={user.name} className="h-6 w-6 rounded-full" /> : <UserCircleIcon className="h-6 w-6" />}
+              </Link>
             ) : (
-              <button onClick={login} className="text-gray-600 hover:text-purple-600 transition-colors flex items-center text-sm font-medium" aria-label={t('login')}>
-                <ArrowLeftOnRectangleIcon className="h-6 w-6 mr-1" /> {t('login')}
+              <button onClick={login} className="text-gray-600 hover:text-purple-600 transition-colors" aria-label={t('login')}>
+                <ArrowLeftOnRectangleIcon className="h-6 w-6" />
               </button>
             )}
-            <Link to="/shop/cart" className="text-gray-600 hover:text-purple-600 transition-colors relative" aria-label={t('cart')}>
-              <ShoppingBagIcon className="h-7 w-7" />
-              {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
+            
+            {/* Track Order */}
+            <Link to="/shop/track-order" className="text-gray-600 hover:text-purple-600 transition-colors" aria-label={t('trackOrder')}>
+              <TruckIcon className="h-6 w-6" />
             </Link>
           </div>
-          <div className="md:hidden flex items-center space-x-4">
-            <Link to="/shop/cart" className="text-gray-600 hover:text-purple-600 transition-colors relative" aria-label={t('cart')}>
-              <ShoppingBagIcon className="h-7 w-7" />
-              {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
-            </Link>
+          
+          {/* Mobile Menu Button - Right side */}
+          <div className="flex items-center lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-700 hover:text-purple-600 focus:outline-none p-2"
@@ -180,12 +183,12 @@ const Navbar: React.FC = () => {
       <div
         id="mobile-menu"
         className={
-          "md:hidden bg-white shadow-lg absolute w-full z-40 " +
+          "lg:hidden bg-white shadow-lg absolute left-0 right-0 z-40 " +
           "transition-all duration-300 ease-in-out origin-top " +
           (isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5 pointer-events-none')
         }
       >
-        <div className="px-4 pt-3 pb-4 space-y-2 sm:px-5">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-4 space-y-2">
           {commonNavLinks.map((link) => (
             <NavItem 
               key={link.nameKey} 
@@ -197,38 +200,6 @@ const Navbar: React.FC = () => {
               end={link.end}
             />
           ))}
-          {isAuthenticated ? (
-            <>
-              <NavLink
-                to="/shop/account"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `flex items-center px-3 py-3 rounded-lg text-base font-medium transition-colors group ${
-                    isActive ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600'
-                  }`
-                }
-              >
-                <UserCircleIcon className="h-6 w-6 mr-3 text-gray-500 group-hover:text-purple-600" />
-                {t('myAccount')}
-              </NavLink>
-              <button 
-                onClick={() => { logout(); setIsMobileMenuOpen(false); }}
-                className="w-full flex items-center text-left px-3 py-3 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-purple-50 hover:text-purple-600 group"
-              >
-                <ArrowRightOnRectangleIcon className="h-6 w-6 mr-3 text-gray-500 group-hover:text-purple-600" />
-                {t('logout')}
-              </button>
-            </>
-          ) : (
-            <button 
-              onClick={() => { login(); setIsMobileMenuOpen(false); }}
-              className="w-full flex items-center text-left px-3 py-3 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-purple-50 hover:text-purple-600 group"
-            >
-              <ArrowLeftOnRectangleIcon className="h-6 w-6 mr-3 text-gray-500 group-hover:text-purple-600" />
-              {t('login')}
-            </button>
-          )}
-          {/* The cart link from the mobile menu is now removed */}
         </div>
       </div>
     </nav>

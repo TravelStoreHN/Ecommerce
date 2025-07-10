@@ -27,7 +27,7 @@ const BlogPostCard: React.FC<{ post: BlogPost }> = ({ post }) => {
             <span className="flex items-center"><CalendarDaysIcon className="h-4 w-4 mr-1" /> {new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US')}</span>
             <span className="flex items-center"><UserIcon className="h-4 w-4 mr-1" /> {post.author}</span>
           </div>
-          <Link to={`#`} className="block"> {/* Placeholder link, should go to /shop/blog/${post.slug} */}
+          <Link to={`/shop/blog/${post.slug}`} className="block">
             <h2 className="text-2xl font-semibold text-gray-800 group-hover:text-purple-600 transition-colors mb-2">{post.title}</h2>
           </Link>
           <p className="text-gray-600 text-sm mb-4 leading-relaxed">{post.excerpt}</p>
@@ -41,7 +41,7 @@ const BlogPostCard: React.FC<{ post: BlogPost }> = ({ post }) => {
                 </span>
               ))}
             </div>
-            <Link to={`#`} className="text-purple-600 hover:text-purple-800 font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform">
+            <Link to={`/shop/blog/${post.slug}`} className="text-purple-600 hover:text-purple-800 font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform">
               {t('readMore')} <ArrowRightIcon className="h-4 w-4 ml-1" />
             </Link>
           </div>
@@ -84,7 +84,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ posts }) => {
       // For followFacebook, we call it without arguments as it's now hardcoded.
       return key === 'connectPrompt' ? translationEntry(SITE_NAME) : (translationEntry as () => string)();
     }
-    return translationEntry; // entry is string here
+    return translationEntry as string; // entry is string here
   };
 
   return (
@@ -108,6 +108,8 @@ const BlogPage: React.FC<BlogPageProps> = ({ posts }) => {
           <p className="text-gray-600">{t('noPostsAdvice')}</p>
         </div>
       )}
+
+
 
       <Card className="p-8 text-center">
         <h3 className="text-2xl font-semibold text-gray-800 mb-3">{t('connectWithUs')}</h3>

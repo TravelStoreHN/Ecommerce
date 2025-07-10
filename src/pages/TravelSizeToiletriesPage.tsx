@@ -164,7 +164,7 @@ const TravelSizeToiletriesPage: React.FC = () => {
       </header>
 
       {/* Product Filters and Listing */}
-      <div className="bg-white p-4 sm:p-6 rounded-xl shadow sticky top-20 z-30">
+      <div className="bg-white p-4 sm:p-6 rounded-xl shadow">
         <div className={`grid grid-cols-1 ${isFilterBarCollapsed ? 'md:grid-cols-1' : 'md:grid-cols-3'} gap-4 items-end`}>
           <div className={`${isFilterBarCollapsed ? 'md:col-span-1' : 'md:col-span-1'}`}>
             <label htmlFor="search-toiletries" className="block text-sm font-medium text-gray-700 mb-1">{t('searchLabel')}</label>

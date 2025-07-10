@@ -5,8 +5,7 @@ import { useSettings } from '../contexts/SettingsContext';
 import { formatCurrency } from '../utils/localization';
 import { whatsappService } from '../services/whatsappService';
 import Button from '../components/ui/Button';
-import { ShoppingBagIcon, TrashIcon, ArrowLeftIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
-import { FaWhatsapp } from 'react-icons/fa';
+import { ShoppingBagIcon, TrashIcon, ArrowLeftIcon, PlusIcon, MinusIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import FreeShippingProgressBar from '@/components/cart/FreeShippingProgressBar';
 
 const CartPage: React.FC = () => {
@@ -198,7 +197,7 @@ const CartPage: React.FC = () => {
             size="lg" 
             onClick={handleWhatsAppOrder} 
             className="w-full sm:w-auto bg-green-600 hover:bg-green-700 focus:ring-green-500"
-            leftIcon={<FaWhatsapp className="h-5 w-5" />}
+            leftIcon={<ChatBubbleBottomCenterTextIcon className="h-5 w-5" />}
           >
             {t('orderViaWhatsApp')}
           </Button>

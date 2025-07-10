@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
     "@heroicons/react": "^2.1.1",
     "nodemailer": "^7.0.3",
     "react": "^18.2.0",

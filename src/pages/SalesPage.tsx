@@ -1,16 +1,81 @@
-
-import React from 'react';
+import React, { useState } from 'react';
+import Confetti from 'react-confetti';
 import ProductCard from '../components/product/ProductCard';
 import { mockProducts } from '../services/mockData';
 import { TagIcon } from '@heroicons/react/24/outline';
 import { useSettings } from '../contexts/SettingsContext';
+import { useNotification } from '../contexts/NotificationContext';
+import { API_ENDPOINTS } from '../config/api';
 // formatCurrency is available via ProductCard, but if needed directly:
 // import { formatCurrency } from '../utils/localization'; 
 
 const SalesPage: React.FC = () => {
   const { language } = useSettings(); // currency is handled by ProductCard
+  const { showNotification } = useNotification();
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const saleProducts = mockProducts.filter(p => p.isSale && p.originalPrice && p.originalPrice > p.price);
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      showNotification(
+        language === 'es' ? 'Por favor ingresa tu correo electrónico' : 'Please enter your email address',
+        'error'
+      );
+      return;
+    }
+
+    setIsSubscribing(true);
+    try {
+      // Generate a simple discount code
+      const discountCode = `WELCOME10`;
+      
+      const response = await fetch('https://travelstorehn-app.vercel.app/api/sendwelcomeemail', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          language,
+          discountCode
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Trigger confetti celebration!
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 5000); // Hide confetti after 5 seconds
+        
+        showNotification(
+          language === 'es' 
+            ? '¡Te has suscrito exitosamente! Revisa tu correo para el código de descuento.' 
+            : 'Successfully subscribed! Check your email for the discount code.',
+          'success'
+        );
+        setEmail(''); // Clear the form
+      } else {
+        throw new Error(result.error || 'Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Subscription error:', error);
+      showNotification(
+        language === 'es' 
+          ? 'Error al suscribirse. Por favor intenta de nuevo.' 
+          : 'Error subscribing. Please try again.',
+        'error'
+      );
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   const t = (key: string, percentageValue?: number) => {
     const translations: Record<string, Record<string, string | ((p: number) => string)>> = {
@@ -23,7 +88,7 @@ const SalesPage: React.FC = () => {
         stayUpdated: "¡Mantente Actualizado!",
         subscribePrompt: "Suscríbete a nuestro boletín para ser el primero en conocer nuevas ofertas y promociones exclusivas.",
         emailPlaceholder: "Ingresa tu correo electrónico",
-        subscribeButton: "Suscribirse",
+        subscribeButton: "🎁 ¡Obtén 10% de Descuento Extra!",
         saleOff: (percentage: number) => `${percentage}% DE DESCUENTO`
       },
       en: {
@@ -35,7 +100,7 @@ const SalesPage: React.FC = () => {
         stayUpdated: "Stay Updated!",
         subscribePrompt: "Subscribe to our newsletter to be the first to know about new sales and exclusive offers.",
         emailPlaceholder: "Enter your email",
-        subscribeButton: "Subscribe",
+        subscribeButton: "🎁 Get 10% Extra Discount!",
         saleOff: (percentage: number) => `${percentage}% OFF`
       }
     };
@@ -51,6 +116,8 @@ const SalesPage: React.FC = () => {
 
   return (
     <div className="space-y-8">
+      {showConfetti && <Confetti />}
+      
       <header className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-8 rounded-xl shadow-lg text-center">
         <TagIcon className="h-16 w-16 mx-auto mb-4" />
         <h1 className="text-4xl font-bold">{t('title')}</h1>
@@ -89,18 +156,22 @@ const SalesPage: React.FC = () => {
       <section className="bg-white p-8 rounded-xl shadow">
         <h3 className="text-xl font-semibold text-gray-700 mb-3">{t('stayUpdated')}</h3>
         <p className="text-gray-600 mb-4">{t('subscribePrompt')}</p>
-        <form className="flex flex-col sm:flex-row gap-3">
+        <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
           <input 
             type="email" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder={t('emailPlaceholder') as string}
             className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
             aria-label={t('emailPlaceholder') as string}
+            required
           />
           <button 
             type="submit" 
-            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold"
+            disabled={isSubscribing}
+            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {t('subscribeButton')}
+            {isSubscribing ? (language === 'es' ? 'Enviando...' : 'Sending...') : t('subscribeButton')}
           </button>
         </form>
       </section>

@@ -109,7 +109,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ products }) => {
         <p className="text-gray-600">{t('subtitle')}</p>
       </header>
       
-      <div className="bg-white p-4 sm:p-6 rounded-xl shadow sticky top-20 z-30">
+      <div className={`bg-white p-4 sm:p-6 rounded-xl shadow sticky top-20 z-30 transition-all duration-300 ${isFilterBarCollapsed ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <div className={`grid grid-cols-1 ${isFilterBarCollapsed ? 'md:grid-cols-1' : 'md:grid-cols-3'} gap-4 items-end`}>
           {/* Search Input Div */}
           <div className={`${isFilterBarCollapsed ? 'md:col-span-1' : 'md:col-span-1'}`}>

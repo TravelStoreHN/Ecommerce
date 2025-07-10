@@ -1,44 +1,63 @@
 
-import React, { createContext, useState, useContext, ReactNode, useCallback } from 'react';
-import { User } from '../types'; // Assuming User type is defined in types.ts
+import React, { createContext, useContext, ReactNode } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { User } from '../types';
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  isLoading: boolean;
   user: User | null;
   login: () => void;
   logout: () => void;
+  getAccessTokenSilently?: () => Promise<string>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock user data
-const mockUser: User = {
-  id: 'user-mock-123',
-  name: 'Alex Viajero',
-  email: 'alex.viajero@example.com',
-  avatar: 'https://picsum.photos/seed/avatar1/200/200' // Placeholder avatar
-};
-
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null);
+  const {
+    isAuthenticated,
+    isLoading,
+    user: auth0User,
+    loginWithRedirect,
+    logout: auth0Logout,
+    getAccessTokenSilently,
+  } = useAuth0();
 
-  const login = useCallback(() => {
-    // In a real app, this would involve API calls, token handling, etc.
-    setIsAuthenticated(true);
-    setUser(mockUser);
-    console.log("User logged in (mock)");
-  }, []);
+  // Transform Auth0 user to our User type
+  const user: User | null = auth0User ? {
+    id: auth0User.sub || '',
+    name: auth0User.name || '',
+    email: auth0User.email || '',
+    avatar: auth0User.picture,
+    email_verified: auth0User.email_verified,
+    nickname: auth0User.nickname,
+    picture: auth0User.picture,
+    sub: auth0User.sub,
+    updated_at: auth0User.updated_at,
+  } : null;
 
-  const logout = useCallback(() => {
-    setIsAuthenticated(false);
-    setUser(null);
-    console.log("User logged out (mock)");
-    // In a real app, clear tokens, redirect, etc.
-  }, []);
+  const login = () => {
+    loginWithRedirect();
+  };
+
+  const logout = () => {
+    auth0Logout({
+      logoutParams: {
+        returnTo: window.location.origin
+      }
+    });
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ 
+      isAuthenticated, 
+      isLoading, 
+      user, 
+      login, 
+      logout, 
+      getAccessTokenSilently 
+    }}>
       {children}
     </AuthContext.Provider>
   );

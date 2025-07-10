@@ -4,10 +4,16 @@ import { UserCircleIcon, ShoppingBagIcon, HeartIcon, Cog6ToothIcon, ArrowLeftOnR
 import { useSettings } from '../contexts/SettingsContext';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/ui/Button';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const MyAccountPage: React.FC = () => {
   const { language } = useSettings();
-  const { isAuthenticated, user, login, logout } = useAuth();
+  const { isAuthenticated, isLoading, user, login, logout } = useAuth();
+
+  // Show loading spinner while Auth0 is checking authentication
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   const t = (key: string, name?: string) => {
     const translations: Record<string, Record<string, string>> = {
@@ -89,15 +95,20 @@ const MyAccountPage: React.FC = () => {
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-1 bg-white p-6 rounded-xl shadow">
           <div className="flex flex-col items-center text-center">
-            {user.avatar ? (
-              <img src={user.avatar} alt={user.name} className="h-24 w-24 rounded-full mb-4 object-cover" />
+            {user.avatar || user.picture ? (
+              <img src={user.avatar || user.picture} alt={user.name} className="h-24 w-24 rounded-full mb-4 object-cover" />
             ) : (
               <UserCircleIcon className="h-24 w-24 text-purple-500 mb-4" />
             )}
             <h2 className="text-2xl font-semibold text-gray-800">{t('greeting', user.name)}</h2>
             <p className="text-gray-600">{user.email}</p>
-            {/* Mocked join date, in real app this would come from backend */}
-            <p className="text-sm text-gray-500 mt-2">{t('memberSince')} {new Date('2023-05-15').toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US')}</p>
+            {user.email_verified && (
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mt-2">
+                ✓ Email Verified
+              </span>
+            )}
+            {/* Show Auth0 creation date if available, otherwise mock date */}
+            <p className="text-sm text-gray-500 mt-2">{t('memberSince')} {user.updated_at ? new Date(user.updated_at).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US') : new Date('2023-05-15').toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US')}</p>
              <button className="mt-4 text-sm text-purple-600 hover:underline">{t('editProfile')}</button>
           </div>
         </div>

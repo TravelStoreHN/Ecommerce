@@ -23,8 +23,10 @@ export interface BlogPost {
   content: string;
   imageUrl: string;
   tags: string[];
-  category: string;   // <-- Add this
-  readTime: string;   // <-- And this
+  category: string;
+  readTime: string;
+  isFacebookEmbed?: boolean;
+  facebookEmbeds?: string[];
 }
 
 export interface Experience {
@@ -67,6 +69,11 @@ export interface User {
   name: string;
   email: string;
   avatar?: string; // Optional
+  email_verified?: boolean;
+  nickname?: string;
+  picture?: string;
+  sub?: string; // Auth0 user ID
+  updated_at?: string;
 }
 
 // Notification interface for NotificationContext
