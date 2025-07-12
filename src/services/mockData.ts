@@ -411,7 +411,7 @@ Entonces, ¿por qué esperar? Únete a millones de viajeros en todo el mundo y e
     author: 'TravelStoreHN',
     date: '2025-01-09',
     tags: ['Colombia', 'Movilidad', 'Apps de Viaje', 'inDrive', 'Transporte', 'Tecnología'],
-    imageUrl: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://raw.githubusercontent.com/TravelStoreHN/Ecommerce/refs/heads/main/public/Media/Brand%20Assets/INDRIVE.png',
     slug: 'viaja-seguro-colombia-indrive-app-movilidad'
   },
   {
@@ -651,7 +651,7 @@ El fin de la gratuidad del transporte público en España marca el inicio de una
 En TravelStoreHN.com, entendemos que los cambios en los costos de transporte pueden afectar tus planes de viaje, por eso ofrecemos productos que te ayudan a optimizar tus gastos sin comprometer la calidad de tu experiencia.`,
     author: 'TravelStore HN',
     date: '2025-07-03',
-    imageUrl: 'https://raw.githubusercontent.com/TravelStoreHN/Ecommerce/refs/heads/main/public/Media/Brand%20Assets/INDRIVE.png',
+    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     category: 'Noticias de Viaje',
     readTime: '5 min',
     slug: 'fin-gratuidad-transporte-publico-espana-2025',

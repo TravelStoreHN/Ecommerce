@@ -9,6 +9,7 @@ interface AuthContextType {
   user: User | null;
   login: () => void;
   logout: () => void;
+  loginWithRedirect?: (options?: any) => Promise<void>;
   getAccessTokenSilently?: () => Promise<string>;
 }
 
@@ -56,6 +57,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       user, 
       login, 
       logout, 
+      loginWithRedirect,
       getAccessTokenSilently 
     }}>
       {children}

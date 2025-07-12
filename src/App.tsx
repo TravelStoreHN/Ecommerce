@@ -17,6 +17,7 @@ import TravelKitsPage from './pages/TravelKitsPage';
 import CartPage from './pages/CartPage'; // Import CartPage
 import ESimPage from './pages/ESimPage'; // Import ESimPage
 import TravelSizeToiletriesPage from './pages/TravelSizeToiletriesPage'; // Import TravelSizeToiletriesPage
+import SignUpPage from './pages/SignUpPage'; // Import SignUpPage
 import { CartProvider } from './contexts/CartContext';
 import Notification from './components/ui/Notification';
 import LoadingSpinner from './components/ui/LoadingSpinner';
@@ -36,6 +37,7 @@ const AppContent: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
       <Route path="/shop" element={<ShopLayout />}>
         <Route index element={<ShopHomePage />} />
         <Route path="products" element={<ProductsPage products={mockProducts} />} />

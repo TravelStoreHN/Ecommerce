@@ -15,14 +15,15 @@ export default defineConfig(({ command }) => {
         minify: true,
         inject: {
           tags: [
-            {
-              tag: 'meta',
-              injectTo: 'head-prepend',
-              attrs: {
-                'http-equiv': 'Content-Security-Policy',
-                content: csp,
-              },
-            },
+            // Temporarily disabled CSP for Auth0 testing
+            // {
+            //   tag: 'meta',
+            //   injectTo: 'head-prepend',
+            //   attrs: {
+            //     'http-equiv': 'Content-Security-Policy',
+            //     content: csp,
+            //   },
+            // },
           ],
         },
       }),

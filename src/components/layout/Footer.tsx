@@ -38,6 +38,7 @@ export default function Footer(): JSX.Element {
     blog: language === 'es' ? 'Blog' : 'Blog',
     myAccount: language === 'es' ? 'Mi Cuenta' : 'My Account',
     trackOrder: language === 'es' ? 'Rastrear Pedido' : 'Track Your Order',
+    signUp: language === 'es' ? 'Registrarse' : 'Sign Up',
     legal: language === 'es' ? 'Legal' : 'Legal',
     terms: language === 'es' ? 'Términos y Condiciones' : 'Terms & Conditions',
     privacy: language === 'es' ? 'Política de Privacidad' : 'Privacy Policy',
@@ -76,6 +77,7 @@ export default function Footer(): JSX.Element {
               <li><Link to="/shop/blog" className="hover:text-white">{content.blog}</Link></li>
               <li><Link to="/shop/account" className="hover:text-white">{content.myAccount}</Link></li>
               <li><Link to="/shop/track-order" className="hover:text-white">{content.trackOrder}</Link></li>
+              <li><Link to="/signup" className="hover:text-white">{content.signUp}</Link></li>
             </ul>
           </div>
           <div>

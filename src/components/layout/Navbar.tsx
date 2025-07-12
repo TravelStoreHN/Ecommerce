@@ -63,6 +63,7 @@ const Navbar: React.FC = () => {
       openMenu: 'Abrir menú principal',
       login: 'Iniciar Sesión',
       logout: 'Cerrar Sesión',
+      signUp: 'Registrarse',
     },
     en: {
       home: 'Home',
@@ -79,6 +80,7 @@ const Navbar: React.FC = () => {
       openMenu: 'Open main menu',
       login: 'Login',
       logout: 'Logout',
+      signUp: 'Sign Up',
     }
   };
 
@@ -154,9 +156,17 @@ const Navbar: React.FC = () => {
                 {user.avatar ? <img src={user.avatar} alt={user.name} className="h-6 w-6 rounded-full" /> : <UserCircleIcon className="h-6 w-6" />}
               </Link>
             ) : (
-              <button onClick={login} className="text-gray-600 hover:text-purple-600 transition-colors" aria-label={t('login')}>
-                <ArrowLeftOnRectangleIcon className="h-6 w-6" />
-              </button>
+              <div className="flex items-center space-x-2">
+                <button onClick={login} className="text-gray-600 hover:text-purple-600 transition-colors" aria-label={t('login')}>
+                  <ArrowLeftOnRectangleIcon className="h-6 w-6" />
+                </button>
+                <Link 
+                  to="/signup" 
+                  className="bg-purple-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors"
+                >
+                  {t('signUp')}
+                </Link>
+              </div>
             )}
             
             {/* Track Order */}
@@ -200,6 +210,30 @@ const Navbar: React.FC = () => {
               end={link.end}
             />
           ))}
+          
+          {/* Mobile Authentication Links */}
+          {!isAuthenticated && (
+            <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
+              <button
+                onClick={() => {
+                  login();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-left flex items-center px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+              >
+                <ArrowLeftOnRectangleIcon className="h-5 w-5 mr-3" />
+                {t('login')}
+              </button>
+              <Link
+                to="/signup"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-left flex items-center px-4 py-3 rounded-lg text-base font-medium bg-purple-600 text-white hover:bg-purple-700 transition-colors"
+              >
+                <UserCircleIcon className="h-5 w-5 mr-3" />
+                {t('signUp')}
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>
