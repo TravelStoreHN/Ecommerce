@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useCart } from '../contexts/CartContext';
 import { useSettings } from '../contexts/SettingsContext';
 import { formatCurrency } from '../utils/localization';
 import { whatsappService } from '../services/whatsappService';
+import { createCheckoutSession } from '../services/stripeService';
 import Button from '../components/ui/Button';
 import { ShoppingBagIcon, TrashIcon, ArrowLeftIcon, PlusIcon, MinusIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import FreeShippingProgressBar from '@/components/cart/FreeShippingProgressBar';
@@ -11,6 +13,8 @@ import FreeShippingProgressBar from '@/components/cart/FreeShippingProgressBar';
 const CartPage: React.FC = () => {
   const { cartItems, removeItemFromCart, increaseItemQuantity, decreaseItemQuantity, cartItemCount, cartSubtotal } = useCart();
   const { language, currency } = useSettings();
+  const { isAuthenticated, loginWithRedirect, user, getAccessTokenSilently } = useAuth0();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   const t = (key: string, data?: any) => {
     const translations: Record<string, any> = {
@@ -64,8 +68,52 @@ const CartPage: React.FC = () => {
     removeItemFromCart(itemId);
   };
   
-  const handleCheckout = () => {
-    alert(t('checkoutAlert'));
+  const handleCheckout = async () => {
+    if (!isAuthenticated) {
+      loginWithRedirect({
+        appState: { returnTo: '/cart' }
+      });
+      return;
+    }
+
+    if (cartItemCount === 0) {
+      alert(language === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
+      return;
+    }
+
+    setIsCheckingOut(true);
+
+    try {
+      const accessToken = await getAccessTokenSilently();
+
+      // Convert cart items to the format expected by Stripe
+      const checkoutItems = cartItems.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: `L.${item.price.toFixed(2)}`,
+        imageUrl: item.imageUrl,
+        category: item.category,
+        quantity: item.quantity
+      }));
+
+      const { url } = await createCheckoutSession({
+        items: checkoutItems,
+        customerEmail: user?.email,
+        userId: user?.sub,
+      }, accessToken);
+
+      // Redirect to Stripe Checkout
+      window.location.href = url;
+
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      const errorMessage = language === 'es' 
+        ? 'Error al procesar el pago. Por favor, intenta de nuevo.'
+        : 'Error processing payment. Please try again.';
+      alert(errorMessage);
+    } finally {
+      setIsCheckingOut(false);
+    }
   };
 
   const handleWhatsAppOrder = () => {
@@ -201,8 +249,20 @@ const CartPage: React.FC = () => {
           >
             {t('orderViaWhatsApp')}
           </Button>
-          <Button variant="primary" size="lg" onClick={handleCheckout} className="w-full sm:w-auto">
-            {t('proceedToCheckout')}
+          <Button 
+            variant="primary" 
+            size="lg" 
+            onClick={handleCheckout} 
+            className="w-full sm:w-auto"
+            disabled={isCheckingOut}
+          >
+            {isCheckingOut 
+              ? (language === 'es' ? 'Procesando...' : 'Processing...') 
+              : (!isAuthenticated 
+                ? (language === 'es' ? 'Iniciar Sesión para Comprar' : 'Login to Checkout')
+                : t('proceedToCheckout')
+              )
+            }
           </Button>
         </div>
       </div>

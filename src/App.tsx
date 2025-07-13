@@ -18,6 +18,7 @@ import CartPage from './pages/CartPage'; // Import CartPage
 import ESimPage from './pages/ESimPage'; // Import ESimPage
 import TravelSizeToiletriesPage from './pages/TravelSizeToiletriesPage'; // Import TravelSizeToiletriesPage
 import SignUpPage from './pages/SignUpPage'; // Import SignUpPage
+import { CheckoutSuccessPage } from './pages/CheckoutSuccessPage'; // Import CheckoutSuccessPage
 import { CartProvider } from './contexts/CartContext';
 import Notification from './components/ui/Notification';
 import LoadingSpinner from './components/ui/LoadingSpinner';
@@ -53,6 +54,7 @@ const AppContent: React.FC = () => {
         <Route path="travel-agent" element={<TravelAgentPage />} />
         <Route path="legal/:policyType" element={<LegalPage />} />
         <Route path="track-order/:trackingNumber?" element={<TrackOrderPage />} />
+        <Route path="checkout/success" element={<CheckoutSuccessPage />} />
         <Route path="not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="not-found" replace />} />
       </Route>

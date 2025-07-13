@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Product } from '../../types';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import { BuyNowButton } from '../checkout/BuyNowButton';
 import { StarIcon as StarIconSolid } from '@heroicons/react/20/solid'; // Renamed to avoid conflict
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'; // Added
 import { useSettings } from '../../contexts/SettingsContext';
@@ -117,7 +118,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
         
-        <div className="mt-4">
+        <div className="mt-4 space-y-2">
           {cartItem && cartItem.quantity > 0 ? (
             <div className="flex items-center justify-between w-full bg-purple-50 p-1 rounded-lg">
               <Button 
@@ -152,6 +153,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               {t('addToCart')}
             </Button>
           )}
+          
+          {/* Buy Now Button - Always show */}
+          <BuyNowButton
+            product={{
+              id: product.id,
+              name: product.name,
+              price: formatCurrency(product.price, currency),
+              imageUrl: product.imageUrl,
+              category: product.category
+            }}
+            size="sm"
+            className="w-full"
+          />
         </div>
       </div>
     </Card>

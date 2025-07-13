@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode, useCallback, useMemo } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useCallback, useMemo, useEffect } from 'react';
 import { Product } from '../types';
 
 // Define CartItem by extending Product and adding quantity
@@ -15,12 +15,32 @@ interface CartContextType {
   clearCart: () => void;
   cartItemCount: number;
   cartSubtotal: number;
+  isInCart: (productId: string) => boolean;
+  getItemQuantity: (productId: string) => number;
+  updateCartItemQuantity: (itemId: string, quantity: number) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem('travelstore-cart');
+    if (savedCart) {
+      try {
+        setCartItems(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Error loading cart from localStorage:', error);
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage whenever items change
+  useEffect(() => {
+    localStorage.setItem('travelstore-cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addItemToCart = useCallback((product: Product) => {
     setCartItems(prevItems => {
@@ -72,6 +92,28 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }, [cartItems]);
 
+  const isInCart = useCallback((productId: string) => {
+    return cartItems.some(item => item.id === productId);
+  }, [cartItems]);
+
+  const getItemQuantity = useCallback((productId: string) => {
+    const item = cartItems.find(item => item.id === productId);
+    return item ? item.quantity : 0;
+  }, [cartItems]);
+
+  const updateCartItemQuantity = useCallback((itemId: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeItemFromCart(itemId);
+      return;
+    }
+
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId ? { ...item, quantity } : item
+      )
+    );
+  }, [removeItemFromCart]);
+
   return (
     <CartContext.Provider value={{
         cartItems,
@@ -81,7 +123,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         decreaseItemQuantity,
         clearCart,
         cartItemCount,
-        cartSubtotal
+        cartSubtotal,
+        isInCart,
+        getItemQuantity,
+        updateCartItemQuantity
     }}>
       {children}
     </CartContext.Provider>
