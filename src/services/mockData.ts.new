@@ -1,12 +1,15 @@
+// Updated mockData.ts with Stripe integration
+// Generated automatically by import-products-to-stripe.js
+
 import { Product, BlogPost } from '../types';
 
 // Stripe Price IDs mapping
-export const STRIPE_PRICE_IDS: { [key: string]: string } = {
-  'prod-001': 'price_1RkRZtAcgfSKsJf0IixT4pTF',
+export const STRIPE_PRICE_IDS = {
+  'prod-001': 'price_1RkRZtAcgfSKsJf0IixT4pTF', // Original: 'price_1RkRZtAcgfSKsJf0kt6HdRU6'
   'prod-002': 'price_1RkRZtAcgfSKsJf0PMOoO4ZZ',
-  'prod-003': 'price_1RkRZuAcgfSKsJf0FAEqOXiG',
+  'prod-003': 'price_1RkRZuAcgfSKsJf0FAEqOXiG', // Original: 'price_1RkRZuAcgfSKsJf0mjMU6KXy'
   'prod-004': 'price_1RkRZvAcgfSKsJf0x10MqL8g',
-  'prod-005': 'price_1RkRZwAcgfSKsJf04opVU9Fk',
+  'prod-005': 'price_1RkRZwAcgfSKsJf04opVU9Fk', // Original: 'price_1RkRZwAcgfSKsJf0ozHlrpa3'
   'prod-006': 'price_1RkRZwAcgfSKsJf0BJuUXAgT',
   'prod-007': 'price_1RkRZxAcgfSKsJf0bTiAFyGZ',
   'prod-008': 'price_1RkRZxAcgfSKsJf0DsenRP12',
@@ -23,35 +26,6 @@ export const STRIPE_PRICE_IDS: { [key: string]: string } = {
 export function getStripePriceId(productId: string): string {
   return STRIPE_PRICE_IDS[productId] || '';
 }
-
-// HNL_CONVERSION_RATE is used here to derive USD cost from original HNL cost comments.
-const HNL_CONVERSION_RATE = 24.68; // 1 USD = 24.68 HNL (Example rate)
-
-// Helper function to calculate new price based on HNL cost string (e.g., "L.28.39")
-// Applies markup without rounding
-const calculatePrice = (hnlCostString: string): number => {
-  const hnlCost = parseFloat(hnlCostString.replace('L.', ''));
-  const usdCostBase = hnlCost / HNL_CONVERSION_RATE; // USD cost before markup
-  const markedUpPrice = usdCostBase * 7.5; // Apply 7.5x markup (650% markup)
-  // Return exact calculated price rounded to 2 decimal places
-  return parseFloat(markedUpPrice.toFixed(2));
-};
-
-// Define sale products
-const saleDiscount = 0.25; // 25% discount for sale items
-
-// Product 1: Báscula Portátil de Viaje (ON SALE)
-const regularPriceProd1 = calculatePrice('L.47.00'); 
-const salePriceProd1 = parseFloat((regularPriceProd1 * (1 - saleDiscount)).toFixed(2)); 
-
-// Product 3: Etiqueta de Identificación para Equipaje (ON SALE)
-const regularPriceProd3 = calculatePrice('L.8.59');
-const salePriceProd3 = parseFloat((regularPriceProd3 * (1 - saleDiscount)).toFixed(2));
-
-// Product 5: Toalla de Viaje Magnética y Compacta (ON SALE)
-const regularPriceProd5 = calculatePrice('L.52.09');
-const salePriceProd5 = parseFloat((regularPriceProd5 * (1 - saleDiscount)).toFixed(2));
-
 
 export const mockProducts: Product[] = [
   {

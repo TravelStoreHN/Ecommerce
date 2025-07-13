@@ -1,4 +1,5 @@
 const Stripe = require('stripe');
+const { getStripePriceId } = require('./price-mapping');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -26,22 +27,16 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // Convert cart items to Stripe line items
+    // Convert cart items to Stripe line items using pre-created price IDs
     const lineItems = items.map(item => {
-      // Convert Lempira price to USD cents
-      const lempiraAmount = parseFloat(item.price.replace('L.', ''));
-      const usdAmount = Math.round((lempiraAmount / 25) * 100); // Convert to USD cents
+      const priceId = getStripePriceId(item.id);
+      
+      if (!priceId) {
+        throw new Error(`No Stripe price ID found for product: ${item.id}`);
+      }
 
       return {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: item.name,
-            images: [item.imageUrl],
-            description: item.category || 'Travel Product',
-          },
-          unit_amount: usdAmount,
-        },
+        price: priceId,
         quantity: item.quantity,
       };
     });

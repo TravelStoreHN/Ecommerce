@@ -1,5 +1,3 @@
-import { PRODUCT_PRICES, ProductId } from '../config/stripe';
-
 export interface CheckoutItem {
   id: string;
   name: string;
@@ -70,7 +68,8 @@ export const getCheckoutSession = async (sessionId: string): Promise<any> => {
  */
 export const calculateCartTotal = (items: CheckoutItem[]): number => {
   return items.reduce((total, item) => {
-    const price = PRODUCT_PRICES[item.id as ProductId] || 0;
+    // Parse the price from the item's price string (e.g., "L.25.00" -> 25)
+    const price = parseFloat(item.price.replace('L.', '')) || 0;
     return total + (price * item.quantity);
   }, 0);
 };
