@@ -165,6 +165,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             }}
             size="sm"
             className="w-full"
+            showAddToCart={false} // Don't show add to cart since ProductCard handles it
           />
         </div>
       </div>

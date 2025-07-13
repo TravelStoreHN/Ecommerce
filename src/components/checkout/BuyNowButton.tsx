@@ -15,12 +15,14 @@ interface BuyNowButtonProps {
   };
   className?: string;
   size?: 'sm' | 'md' | 'lg';
+  showAddToCart?: boolean; // New prop to control if cart button is shown
 }
 
 export const BuyNowButton: React.FC<BuyNowButtonProps> = ({ 
   product, 
   className = '',
-  size = 'md'
+  size = 'md',
+  showAddToCart = true // Default to true for backward compatibility
 }) => {
   const { isAuthenticated, loginWithRedirect, user, getAccessTokenSilently } = useAuth0();
   const { addItemToCart } = useCart();
@@ -106,15 +108,17 @@ export const BuyNowButton: React.FC<BuyNowButtonProps> = ({
         {isLoading ? 'Procesando...' : 'Comprar Ahora'}
       </Button>
       
-      <Button
-        onClick={handleAddToCart}
-        variant="secondary"
-        size={size}
-        className={`${className} flex items-center justify-center gap-2`}
-      >
-        <ShoppingCartIcon className="h-4 w-4" />
-        Agregar al Carrito
-      </Button>
+      {showAddToCart && (
+        <Button
+          onClick={handleAddToCart}
+          variant="secondary"
+          size={size}
+          className={`${className} flex items-center justify-center gap-2`}
+        >
+          <ShoppingCartIcon className="h-4 w-4" />
+          Agregar al Carrito
+        </Button>
+      )}
     </div>
   );
 };
