@@ -2,23 +2,35 @@
   "functions": {
     "api/sendwelcomeemail.js": {
       "maxDuration": 10
+    },
+    "api/stripe/create-checkout-session.js": {
+      "maxDuration": 30
+    },
+    "api/stripe/checkout-session/[sessionId].js": {
+      "maxDuration": 10
     }
   },
+  "rewrites": [
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://travelstorehn.com"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "POST, OPTIONS"
+          "value": "GET, POST, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type"
+          "value": "Content-Type, Authorization"
         }
       ]
     }

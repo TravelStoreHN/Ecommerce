@@ -1,8 +1,16 @@
-import { CartItem } from '../contexts/CartContext';
 import { PRODUCT_PRICES, ProductId } from '../config/stripe';
 
+export interface CheckoutItem {
+  id: string;
+  name: string;
+  price: string;
+  imageUrl: string;
+  category?: string;
+  quantity: number;
+}
+
 export interface CheckoutSessionData {
-  items: CartItem[];
+  items: CheckoutItem[];
   successUrl?: string;
   cancelUrl?: string;
   customerEmail?: string;
@@ -60,7 +68,7 @@ export const getCheckoutSession = async (sessionId: string): Promise<any> => {
 /**
  * Calculate total price for cart items
  */
-export const calculateCartTotal = (items: CartItem[]): number => {
+export const calculateCartTotal = (items: CheckoutItem[]): number => {
   return items.reduce((total, item) => {
     const price = PRODUCT_PRICES[item.id as ProductId] || 0;
     return total + (price * item.quantity);

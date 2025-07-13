@@ -5,7 +5,7 @@ import { Product } from '../types';
 import ProductCard from '../components/product/ProductCard';
 import Button from '../components/ui/Button';
 import { mockProducts } from '../services/mockData';
-import { SparklesIcon, BookOpenIcon, MapPinIcon, TagIcon, CubeTransparentIcon, WifiIcon, BeakerIcon } from '@heroicons/react/24/outline'; // Added BeakerIcon
+import { SparklesIcon, BookOpenIcon, TagIcon, CubeTransparentIcon, WifiIcon, BeakerIcon } from '@heroicons/react/24/outline'; // Added BeakerIcon
 import { useSettings } from '../contexts/SettingsContext';
 
 const ShopHomePage: React.FC = () => {

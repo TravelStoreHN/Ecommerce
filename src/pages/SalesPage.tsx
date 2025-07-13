@@ -5,7 +5,6 @@ import { mockProducts } from '../services/mockData';
 import { TagIcon } from '@heroicons/react/24/outline';
 import { useSettings } from '../contexts/SettingsContext';
 import { useNotification } from '../contexts/NotificationContext';
-import { API_ENDPOINTS } from '../config/api';
 // formatCurrency is available via ProductCard, but if needed directly:
 // import { formatCurrency } from '../utils/localization'; 
 

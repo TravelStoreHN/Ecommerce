@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeftIcon, ClockIcon, UserIcon, CalendarIcon, TagIcon, ShareIcon } from '@heroicons/react/24/outline';
 import { BlogPost } from '../types';
 import { useSettings } from '../contexts/SettingsContext';
-import { WHATSAPP_CONFIG } from '../config/whatsapp';
 
 // InDrive Widget Component
 const InDriveWidget: React.FC = () => {

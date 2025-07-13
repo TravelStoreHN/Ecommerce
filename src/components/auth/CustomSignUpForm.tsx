@@ -25,7 +25,6 @@ const CustomSignUpForm: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
 
   const { loginWithRedirect } = useAuth();
 
@@ -90,12 +89,6 @@ const CustomSignUpForm: React.FC = () => {
       <p className="text-center text-gray-600 mb-6">
         Fill in your details to create your account
       </p>
-      
-      {success && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-          Account created successfully! Redirecting to login...
-        </div>
-      )}
       
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">

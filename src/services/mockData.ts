@@ -412,7 +412,9 @@ Entonces, ¿por qué esperar? Únete a millones de viajeros en todo el mundo y e
     date: '2025-01-09',
     tags: ['Colombia', 'Movilidad', 'Apps de Viaje', 'inDrive', 'Transporte', 'Tecnología'],
     imageUrl: 'https://raw.githubusercontent.com/TravelStoreHN/Ecommerce/refs/heads/main/public/Media/Brand%20Assets/INDRIVE.png',
-    slug: 'viaja-seguro-colombia-indrive-app-movilidad'
+    slug: 'viaja-seguro-colombia-indrive-app-movilidad',
+    category: 'Tecnología',
+    readTime: '6 min'
   },
   {
     id: '1',

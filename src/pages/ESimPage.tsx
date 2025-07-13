@@ -2,7 +2,6 @@
 import React from 'react';
 import { WifiIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { useSettings } from '../contexts/SettingsContext';
-import Button from '../components/ui/Button'; // Optional: for a "Notify Me" placeholder
 
 const ESimPage: React.FC = () => {
   const { language } = useSettings();

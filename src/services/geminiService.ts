@@ -1,5 +1,4 @@
 import { ChatMessage, GroundingChunk } from '../types';
-import { DEFAULT_AI_MODEL } from '../constants';
 
 interface MockAIResponse {
   text: string;

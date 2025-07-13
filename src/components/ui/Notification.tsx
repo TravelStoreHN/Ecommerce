@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useNotification } from '../../contexts/NotificationContext';
-import { CheckCircleIcon, XCircleIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, XCircleIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 
 const Notification: React.FC = () => {
   const { notification } = useNotification();

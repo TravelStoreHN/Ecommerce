@@ -1,8 +1,8 @@
-import { useAuth } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 
 export const useSignUpMetadata = () => {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     const updateUserMetadata = async () => {

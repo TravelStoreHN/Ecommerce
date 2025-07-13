@@ -1,11 +1,9 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { Product } from '../types';
 import ProductCard from '../components/product/ProductCard';
-import { FunnelIcon, ArrowsUpDownIcon, BeakerIcon, ShieldCheckIcon, CubeTransparentIcon } from '@heroicons/react/24/outline';
+import { FunnelIcon, ArrowsUpDownIcon, BeakerIcon } from '@heroicons/react/24/outline';
 import { useSettings } from '../contexts/SettingsContext';
 import { mockProducts } from '../services/mockData';
-import Button from '../components/ui/Button'; // Assuming Button component exists
 
 const TravelSizeToiletriesPage: React.FC = () => {
   const { language } = useSettings();
@@ -65,7 +63,7 @@ const TravelSizeToiletriesPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const t = (key: string, data?: any) => {
+  const t = (key: string) => {
     const translations: Record<string, any> = {
       es: {
         pageTitle: "Artículos de Tocador Tamaño Viaje: Tu Compañero Perfecto",

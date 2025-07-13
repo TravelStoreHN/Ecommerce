@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useCart } from '../../contexts/CartContext';
 import { createCheckoutSession } from '../../services/stripeService';
-import { Button } from '../ui/Button';
+import Button from '../ui/Button';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 interface BuyNowButtonProps {
@@ -74,7 +74,7 @@ export const BuyNowButton: React.FC<BuyNowButtonProps> = ({
       category: product.category || 'Travel Product',
       rating: 0,
       reviews: 0,
-      description: ''
+      description: 'Travel product'
     });
   };
 
